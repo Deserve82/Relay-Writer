@@ -5,8 +5,8 @@ import datetime
 class WriteForm(forms.ModelForm):
     class Meta:
         model = Novel
-        fields = ['title', 'author', 'writingDate', 'novelContent',  'novelImage']
-    writingDate= forms.DateField(initial=datetime.date.today,widget=forms.DateInput(attrs={'required': 'required', }))
+        fields = ['title', 'writingDate', 'novelContent',  'novelImage', 'novelPrice']
+    writing_date= forms.DateField(initial=datetime.date.today,widget=forms.DateInput(attrs={'required': 'required', }))
 
 class Category(forms.ModelForm):
     option = (

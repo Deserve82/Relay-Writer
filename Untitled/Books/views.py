@@ -16,9 +16,9 @@ def new(request):
     if request.method == "POST":
         form = WriteForm(request.POST, request.FILES)
         if form.is_valid():
-            untitled = form.save(commit = False)
-            untitled.save()
-            return redirect('main')
+            novel = form.save(commit = False)
+            novel.save()
+            return redirect('')
     else:
         form = WriteForm()
         return render(request, 'new.html', {'form' : form})
@@ -26,8 +26,8 @@ def new(request):
 def update(request):
     update = Novel
     update.title = request.GET['title']
-    update.author = request.GET['author']
     update.writingDate = request.GET['writingDate']
+    update.novelPrice = request.GET['novelPrice']
     update.novelContent = 'novelContent' in request.POST
     # relay_writer.cateogory = request.GET['new_category']
     return redirect('/Books/'+str(update.id))
