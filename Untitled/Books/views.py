@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
+from django.utils import timezone
+from .form import WriteForm
 
 def main(request):
     # book과 novel의 list 페이지를 서로 분리할까? 아니면 redirect 시키는 방식으로 할까?
@@ -9,3 +11,24 @@ def main(request):
     books = Book.objects.all()
     
     return render(request, 'main.html', {'books':books})
+
+def new(request):
+    if request.method == "POST":
+        form = WriteForm(request.POST, request.FILES)
+        if form.is_valid():
+            untitled = form.save(commit = False)
+            untitled.save()
+            return redirect('main')
+    else:
+        form = WriteForm()
+        return render(request, 'new.html', {'form' : form})
+
+def update(request):
+    update = Novel
+    update.title = request.GET['title']
+    update.author = request.GET['author']
+    update.writingDate = request.GET['writingDate']
+    update.novelContent = 'novelContent' in request.POST
+    # relay_writer.cateogory = request.GET['new_category']
+    return redirect('/Books/'+str(update.id))
+    
