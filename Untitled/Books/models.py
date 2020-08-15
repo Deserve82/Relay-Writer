@@ -48,7 +48,7 @@ class Novel(models.Model):
     title = models.CharField(max_length=150)        # novel 제목
     author = models.CharField(max_length=100)       # novel 저자 -> book은 엮은 이가 무조건 User기 때문에 문제가 없늗데, novel은 저자가 User가 아닌 고전 작가일수도, User일수도 있지 않나? 그럼 우카징ㅠ
     writingDate = models.DateField()                                         # novel 작성일
-    novelImage = models.ImageField(upload_to="novel/"+date_upload_to)        # novel 표지
+    novelImage = models.ImageField(upload_to="novel/")        # novel 표지
     novelPrice = models.IntegerField(null = True,default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
     
@@ -77,6 +77,6 @@ class Book(models.Model):
     title = models.CharField(max_length=150)                            # book 제목
     editor = models.ForeignKey(User, on_delete=models.CASCADE)          # 엮은이
     editDate = models.DateField()                                       # book 엮은 날짜
-    bookImage = models.ImageField(upload_to="book"+date_upload_to)      # book 표지
+    bookImage = models.ImageField(upload_to="book")      # book 표지
     bookPrice = models.IntegerField(null = True,default=0)              # book 가격
     contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n
