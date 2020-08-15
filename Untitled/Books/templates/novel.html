@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+
+
+
+
+<body>
+
+    <div>
+        <h3>{{novel.title}}</h3>
+    
+        <p>{{novel.author}}</p>
+    
+        <!-- 출판사+출판날짜 같이 -->
+        <p>{{novel.publisher}}</p>
+        <p>{{novel.writing}}</p>
+    
+        {% if novel.novelImage %}
+        <img src="{{novel.novelImage.url}}">
+        {% endif %}
+        
+        <!-- 페이지 구현할 땐 'L이미지 R글' 레이아웃 -->
+    </div>
+    
+    <!-- 2 태그(리뷰) -->
+    <!-- #이 알아서 앞에 달리게 하고싶다 -->
+    <div>
+        <!-- views.py 에 def commenting ~~~ 만들자 -->
+        <form action="/Books/commenting/{{novel.id}}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="body" placeholder="tag your comment">
+            <button type="submit">Submit</button>
+            </form>
+    </div>
+    
+    <!-- 하단 태그바에 3+4+5 -->
+    <!-- 3 좋아요 -->
+    <div>
+        <form action="/Books/like/{{novel.id}}" method="GET">
+            <button type="submit"> LIKE </button>
+            </form>
+    </div>
+    
+    <!-- 4 바로 읽기★ -->
+    <div>
+            <span>바로 읽기</span>
+        </a>
+    </div>
+    
+    <!-- 5 엮기(내 Book에 넣기) -->
+    <div>
+    
+    </div>
+
+
+</body>
+
+</html>
+{% endblock %}
