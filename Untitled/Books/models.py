@@ -53,8 +53,7 @@ class Novel(models.Model):
     novelImage = models.ImageField(upload_to="novel/")        # novel 표지
     novelPrice = models.IntegerField(null = True,default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
-    # noveltag = models.CharField(max_length=15)
-    # 
+    # tag = models.CharField(max_length=20)
 
 class Book(models.Model):
     category = (                    # book 카테고리

@@ -19,4 +19,10 @@ def novel(request,novel_id):
 
     print(novel)
     # like_num = len(novel.like.all())
-    return render(request, 'novel.html',{'novel':novel}) # 객체를 novel에 저장해주세요 -> novel을 detail1.html에 보내주세요
+    return render(request, 'novel.html',{'novel':novel}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
+
+def content(request,novel_id):
+    novel = get_object_or_404(Novel, pk = novel_id)
+    return render(request, 'content.html',{'novel':novel})
+
+# def tag()
