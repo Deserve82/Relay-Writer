@@ -29,7 +29,6 @@ def update_novel(request, novel_id):
     update_novel.writingDate = request.POST['writingDate']
     update_novel.novelPrice = request.POST['novelPrice']
     update_novel.novelContent = request.POST['novelContent']
-    # relay_writer.cateogory = request.GET['new_category']
     update_novel.save()
     return redirect('/books/'+str(update_novel.id))
     
