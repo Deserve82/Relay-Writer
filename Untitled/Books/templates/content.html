@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{% url 'novel' novel.id%}" style="font-family:Georgia"> ⇦ Novel Detail</a>
+    <style>
+        body {
+            background-color: whitesmoke;   
+            padding:5rem;
+            position: relative;
+        }
+        table {
+            align-items: center;
+            border-top-width: 50px;
+            /* 이거 안된다 세로 가운데 정렬 하고싶다 */
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+    <div class="row" style="margin:0px;">
+        <div class="col-md-2">    
+            <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="#list-item-1">{{novel.title}}</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2">{{novel.author}}</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3">Content</a>
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="height: 600px;overflow: auto;">
+                <div id="list-item-1" style="text-align: center;height:100%;">
+                    <table width="700" height="300" align = "center">
+                        <tr>
+                            <td rowspan="6">
+                                {% if novel.novelImage %}
+                                <img src="{{novel.novelImage.url}}">
+                                {% endif %}
+                            </td>
+                            <td><h3>{{novel.title}}</h3></td>
+                        </tr>
+                        <tr>
+                            <td>{{novel.author}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <h4 id="list-item-3">Content</h4>
+                <p>{{novel.novelContent}}</p>
+                </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
