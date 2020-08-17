@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUser
-from .forms import PostForm, SigninForm, UserForm
+from .models import CustomUserModel
+from .forms import SigninForm, UserForm
 
 
 #from django.contrib.auth.models import User
@@ -18,7 +18,7 @@ def signin(request):
         # authenticate 값을 인증하고, 우리가 만든 user에 값을 대입함
         if user is not None:  # 유저 생성에 성공했나? 안했나에 대해 조건문으로 대입하고
             login(request, user)
-            return redirect('main')
+            return redirect('/')
         else:  # 실패했다면 아래의 문자열을 보여줌
             return HttpResponse("로그인 실패")
     else:
@@ -36,7 +36,7 @@ def signup(request):
                                                       nickname=form.cleaned_data['nickname'],
                                                       phone_number=form.cleaned_data['phone_number'])
             login(request, new_user)
-            return redirect('main')
+            return redirect('signin.html')
     else:
         form = UserForm()
         return render(request, 'signup.html', {'form': form})

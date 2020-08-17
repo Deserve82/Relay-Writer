@@ -41,11 +41,14 @@
     <!-- My Page와 Login/Logout 버튼이 포함된 Navbar -->
     <nav class="navbar navbar-light" style="background-color: lightgray;">
         <a class="navbar-brand mb-0 h1" href="#">Untitled</a>
+        <a class="navbar-brand mb-0 h1" href="{% url 'signup' %}">회원가입</a>
         <div style="text-align: right;">
             <button type="button" class="btn btn-warning mr-sm-2"
                 style="width: 120px; text-align: right; border-radius: 2em;">My
                 Page</button> <!-- 추후 남는 공간에 사람모양 아이콘 추가-->
-            <button type="button" onclick="location.href='Users/templates/signin.html'"class="btn btn-warning mr-sm-2" style="border-radius: 2em;">Login</button>
+            <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;">
+                <a href="{% url 'signin' %}"></a>Login
+            </button>
         </div> <!-- 버튼 클릭시 변화가 일어나는 효과도 적용할까? 그건 나중에 -->
     </nav>
 
