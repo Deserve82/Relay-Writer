@@ -23,12 +23,13 @@ def new(request):
         form = WriteForm()
         return render(request, 'new.html', {'form' : form})
 
-def new_update(request):
-    new_update = Novel
-    new_update.title = request.GET['title']
-    new_update.writingDate = request.GET['writingDate']
-    new_update.novelPrice = request.GET['novelPrice']
-    new_update.novelContent = 'novelContent' in request.POST
+def update_novel(request, novel_id):
+    update_novel = get_object_or_404(Novel, id = novel_id)
+    update_novel.title = request.POST['title']
+    update_novel.writingDate = request.POST['writingDate']
+    update_novel.novelPrice = request.POST['novelPrice']
+    update_novel.novelContent = request.POST['novelContent']
     # relay_writer.cateogory = request.GET['new_category']
-    return redirect('/Books/'+str(new_update.id))
+    update_novel.save()
+    return redirect('/books/'+str(update_novel.id))
     
