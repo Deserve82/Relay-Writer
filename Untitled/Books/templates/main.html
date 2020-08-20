@@ -29,7 +29,11 @@
             height: 100px;
         }
 
-        #rectangle {
+        .rectangle {
+            /* overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center; */
             width: 140px;
             height: 180px;
             background: lightgray;
@@ -57,14 +61,14 @@
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%; float: left;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link mb-0 h5" href="#">Book <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mb-0 h5" href="{% url 'main' %}">Book <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </nav>
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link mb-0 h5" href="#" style="text-align: center;">Novel</a>
+                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="text-align: center;">Novel</a>
                 </li>
             </ul>
         </nav>
@@ -93,21 +97,23 @@
                 </h2>
             </div> <!-- 나중에 이 div 영역 전체를 클릭 후 이동할 수 있는 식으로 변경 -->
 
+            <!-- 이 부분 나중에 Category 별로 나눠서 보여줄 수 있도록 수정 -->
+            {% for book in books %}
             <div style="max-width: 800px;">
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
+                <div class="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block; cursor: pointer;" onclick="location.href='{% url 'book' book.id %}' ">
+                    {% if book.bookImage %}
+                    <img class="book_img" src="{{book.bookImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
+                    {% endif %}
+                </div>
             </div>
+            {% endfor %}
+
 
 
         </div>
         <hr>
     </div>
-
-   
+    
     <!-- Footer 구간 -->
     <div id="footer">
         footer
