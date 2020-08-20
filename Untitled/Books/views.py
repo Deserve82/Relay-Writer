@@ -12,6 +12,11 @@ def main(request):
     
     return render(request, 'main.html', {'books':books})
 
+def novel_list(request):
+    novels = Novel.objects.all()
+    
+    return render(request, 'novel_list.html', {'novels':novels})
+
 def new(request):
     if request.method == "POST":
         form = WriteForm(request.POST, request.FILES)
@@ -43,3 +48,16 @@ def novel(request,novel_id):
 def content(request,novel_id):
     novel = get_object_or_404(Novel, pk = novel_id)
     return render(request, 'content.html',{'novel':novel})
+
+def book(request,book_id):
+    book = get_object_or_404(Book, pk = book_id)    # class이름, pk=primal key -> DB에 있는 id  # 안되면 404페이지 띄워주세요
+    # 좋아요
+
+    print(book)
+    # like_num = len(novel.like.all())
+    return render(request, 'book.html',{'book':book}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
+
+def book_content(request,book_id):
+    book = get_object_or_404(Book, pk = book_id)
+    return render(request, 'book_content.html',{'book':book})
+

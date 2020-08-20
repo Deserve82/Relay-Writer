@@ -25,7 +25,11 @@ import Books.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Books.views.main, name="main"),
+    path('novel_list/', Books.views.novel_list, name="novel_list"),
     path('books/', include(Books.urls)),
     path('novel/<int:novel_id>', Books.views.novel, name="novel"),
     path('content/<int:novel_id>', Books.views.content, name="content"),
+    path('book/<int:book_id>', Books.views.book, name="book"),
+    path('book_content/<int:book_id>', Books.views.book_content, name="book_content"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

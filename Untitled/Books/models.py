@@ -7,7 +7,7 @@ import datetime
 
 def date_upload_to(instance, filename):
   # upload_to="%Y/%m/%d" 처럼 날짜로 세분화
-  
+  dir_path = instance.__class__.__name__
   ymd_path = timezone.now().strftime('%Y/%m/%d') 
   uuid_name = uuid4().hex
   extension = os.path.splitext(filename)[-1].lower()
@@ -79,6 +79,6 @@ class Book(models.Model):
     title = models.CharField(max_length=150)                            # book 제목
     editor = models.ForeignKey(User, on_delete=models.CASCADE)          # 엮은이
     editDate = models.DateField()                                       # book 엮은 날짜
-    bookImage = models.ImageField(upload_to="book/")      # book 표지
+    bookImage = models.ImageField(upload_to="book/")                    # book 표지
     bookPrice = models.IntegerField(null = True,default=0)              # book 가격
     contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n

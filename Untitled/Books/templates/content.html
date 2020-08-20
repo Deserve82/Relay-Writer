@@ -41,9 +41,9 @@
                 <div id="list-item-1" style="text-align: center;height:100%;">
                     <table width="700" height="300" align = "center">
                         <tr>
-                            <td rowspan="6">
+                            <td rowspan="6" style="width: 18rem; height: fit-content;">
                                 {% if novel.novelImage %}
-                                <img src="{{novel.novelImage.url}}">
+                                <img src="{{novel.novelImage.url}}" style="width: 100%;">
                                 {% endif %}
                             </td>
                             <td><h3>{{novel.title}}</h3></td>
@@ -55,7 +55,7 @@
                 </div>
                 <hr>
                 <h4 id="list-item-3">Content</h4>
-                <p>{{novel.novelContent}}</p>
+                <p>{{novel.novelContent|linebreaksbr}}</p>
                 </div>
         </div>
     </div>
