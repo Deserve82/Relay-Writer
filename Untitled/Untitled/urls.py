@@ -28,4 +28,5 @@ urlpatterns = [
     path('books/', include(Books.urls)),
     path('novel/<int:novel_id>', Books.views.novel, name="novel"),
     path('content/<int:novel_id>', Books.views.content, name="content"),
+    path('Books/tagging/<int:novel_id>', Books.views.tagging, name = "tagging"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
