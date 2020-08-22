@@ -25,18 +25,21 @@ def signin(request):
         signin_form = SigninForm
         return render(request, 'signin.html', {'signin_form': signin_form})
 
+def logout_view(request):
+    logout(request)
+    return redirect('signin')
 
 def signup(request):
     if request.method == "POST":
         form = UserForm(request.POST)
         if form.is_valid():
-            new_user = CustomUser.objects.create_user(username=form.cleaned_data['username'],
+            new_user = CustomUserModel.objects.create_user(username=form.cleaned_data['username'],
                                                       email=form.cleaned_data['email'],
                                                       password=form.cleaned_data['password'],
                                                       nickname=form.cleaned_data['nickname'],
                                                       phone_number=form.cleaned_data['phone_number'])
             login(request, new_user)
-            return redirect('signin.html')
+            return redirect('signin')
     else:
         form = UserForm()
         return render(request, 'signup.html', {'form': form})
