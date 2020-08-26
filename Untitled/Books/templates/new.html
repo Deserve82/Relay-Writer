@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br>
+<div class="container">
+	<form method = 'POST' action="{% url 'main'%}" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div style="text-align: left;">
+            <div class="form-group mb-2">
+                <label for="inputField" class="col-md-4 control-label"> TITLE </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" name="title" style="width: 400px;">
+                </div>
+            </div>
+        
+
+                    <div class="form-group mb-2">
+                <label for="inputField" class="col-md-4 control-label"> DATE </label>
+                <div class="col-md-4">
+                    {{form.writing_date}}
+                </div>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="inputField" class="col-md-4 control-label"> PRICE </label>
+                <div class="col-md-4">
+                    <input type="text" class="form-control" name="novelPrice" style="width: 400px;">
+                </div>
+            </div>
+
+            <div class="form-group mb-2">
+                <label for="inputField" class="col-md-4 control-label"> IMAGE </label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                </div>
+            </div>
+    
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="new_category"> CATEGORY </label>
+                <div class="col-md-4">
+                  <select name="new_category" name="new_category" class="form-control">
+                    <option value="1">세계문학전집</option>
+                    <option value="2">인문</option>
+                    <option value="3">철학</option>
+                    <option value="4">사회</option>
+                    <option value="5">에세이</option>
+                    <option value="6">과학</option>
+                    <option value="7">역사</option>
+                    <option value="8">경제경영</option>
+                    <option value="9">자기계발</option>
+                    <option value="10">여행</option>
+                    <option value="11">라이프스타일</option>
+                    <option value="12">부모</option>
+                    <option value="13">어린이/청소년</option>
+                    <option value="14">판타지/무협</option>
+                    <option value="15">로맨스</option>
+                    <option value="16">만화</option>
+                    <option value="17">애니메이션</option>
+                  </select>
+                </div>
+              </div>
+        
+            <div class="form-group mb-2">
+                <label for="inputField" class="col-md-4 control-label"> CONTENT </label>
+                <div class="col-md-10">
+                    <textarea class="form-control" rows="10" name="body"></textarea>
+                </div>
+            </div>
+	  <input class="btn btn-dark" type="submit" value="글쓰기">
+  </form>
+</div>
+
+{% endblock %}

@@ -3,6 +3,7 @@ from django.conf import settings
 import os
 from uuid import uuid4
 from django.utils import timezone
+import datetime
 
 def date_upload_to(instance, filename):
   # upload_to="%Y/%m/%d" 처럼 날짜로 세분화
@@ -16,9 +17,6 @@ def date_upload_to(instance, filename):
   ])
 
 # Create your models here.
-class Comment(models.Model):
-    pass
-    
 
 class Rate(models.Model):
     pass
@@ -45,13 +43,20 @@ class Novel(models.Model):
                 ("만화"),
                 ("애니메이션"),
     )
-    title = models.CharField(max_length=150)        # novel 제목
-    author = models.CharField(max_length=100)       # novel 저자 -> book은 엮은 이가 무조건 User기 때문에 문제가 없늗데, novel은 저자가 User가 아닌 고전 작가일수도, User일수도 있지 않나? 그럼 우카징ㅠ
-    writingDate = models.DateField()                                         # novel 작성일
+    title = models.CharField(max_length=30)        # novel 제목 # max_length=30으로 변경
+    author = models.CharField(max_length=30)       # novel 저자 -> book은 엮은 이가 무조건 User기 때문에 문제가 없늗데, novel은 저자가 User가 아닌 고전 작가일수도, User일수도 있지 않나? 그럼 우카징ㅠ
+    publisher = models.CharField(max_length=30)    # novel 출판사 -> 없을 수도 있음
+    writingDate = models.DateField(default=datetime.date.today)                                         # novel 작성일
     novelImage = models.ImageField(upload_to="novel/")        # novel 표지
     novelPrice = models.IntegerField(null = True,default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
-    
+
+class Tag(models.Model):
+    novel = models.ForeignKey(Novel, on_delete=models.CASCADE, related_name='tags')
+    body = models.CharField(max_length=15)
+    # 15자 제한 안된다 ㅠㅠㅠㅠ
+    pub_date = models.DateTimeField(auto_now_add=True)
+    # 날짜는 없는 게 더 간결해서 안쓴다
 
 class Book(models.Model):
     category = (                    # book 카테고리
@@ -77,6 +82,6 @@ class Book(models.Model):
     title = models.CharField(max_length=150)                            # book 제목
     editor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)          # 엮은이
     editDate = models.DateField()                                       # book 엮은 날짜
-    bookImage = models.ImageField(upload_to="book")      # book 표지
+    bookImage = models.ImageField(upload_to="book/")      # book 표지
     bookPrice = models.IntegerField(null = True,default=0)              # book 가격
     contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n

@@ -15,12 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 import Books.urls
-import Users.urls
+from django.conf import settings
+from django.conf.urls.static import static
+import Books.views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', Books.views.main, name="main"),
     path('books/', include(Books.urls)),
-    path('users/', include(Users.urls)),
-]
+    path('novel/<int:novel_id>', Books.views.novel, name="novel"),
+    path('content/<int:novel_id>', Books.views.content, name="content"),
+    path('Books/tagging/<int:novel_id>', Books.views.tagging, name = "tagging"),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
