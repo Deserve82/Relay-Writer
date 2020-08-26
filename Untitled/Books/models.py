@@ -17,9 +17,6 @@ def date_upload_to(instance, filename):
   ])
 
 # Create your models here.
-class Comment(models.Model):
-    pass
-    
 
 class Rate(models.Model):
     pass
@@ -53,7 +50,13 @@ class Novel(models.Model):
     novelImage = models.ImageField(upload_to="novel/")        # novel 표지
     novelPrice = models.IntegerField(null = True,default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
-    # tag = models.CharField(max_length=20)
+
+class Tag(models.Model):
+    novel = models.ForeignKey(Novel, on_delete=models.CASCADE, related_name='tags')
+    body = models.CharField(max_length=15)
+    # 15자 제한 안된다 ㅠㅠㅠㅠ
+    pub_date = models.DateTimeField(auto_now_add=True)
+    # 날짜는 없는 게 더 간결해서 안쓴다
 
 class Book(models.Model):
     category = (                    # book 카테고리

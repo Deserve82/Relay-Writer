@@ -16,7 +16,12 @@
             padding-right: 25rem;
             padding-left: 25rem;
         }
+        .middle {
+            text-align:center;
+        }
 
+
+        
     </style>
 
 </head>
@@ -41,6 +46,9 @@
                 <td>{{novel.author}}</td>
             </tr>
             <tr>
+                <!-- <td>{{novel.category}}</td> -->
+            </tr>
+            <tr>
                 <td>{{novel.publisher}}</td>
             </tr>
             <tr>
@@ -56,14 +64,23 @@
     <!-- 2 태그(리뷰) -->
     <!-- #이 알아서 앞에 달리게 하고싶다 -->
     <hr>
-    <div>
-        <h5># Comment TAG</h5>
-        <br>
-        <form action="/Books/commenting/{{novel.id}}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="body" placeholder="tag your comment">
-            <button type="submit">Submit</button>
-            </form>
+    <div class="row">
+        <div class="col-md-5">
+            <h5># Comment TAG</h5>
+            <br>
+            <form action="/Books/tagging/{{novel.id}}" method="POST">
+                {% csrf_token %}
+                <input type="text" name="body" placeholder="# tag your comment">
+                <button type="submit">Submit</button>
+                </form>
+        </div>
+        <div class="col-md-5">
+            {% for tag in tags %}
+            <button style="border-radius: 20px;">
+                # {{tag.body}} 
+            </button>
+            {% endfor %}
+        </div>
     </div>
 
     <hr>
@@ -78,17 +95,17 @@
 
             <div class="col-md-4" style="text-align:center;">
                 <form action="/Books/like/{{novel.id}}" method="GET">
-                    <button type="submit"> LIKE </button>
+                    <button type="submit" > LIKE </button>
                 </form>
             </div>
 
             <div class="col-md-4" style="text-align:center;">
-                <a href="{% url 'content' novel.id %}">바로 읽기</a>
+                <a href="{% url 'content' novel.id %}" ><button>바로 읽기</button></a>
             </div> 
 
             <!-- 단편집에 담기 어떻게 할지 고민 -->
             <div class="col-md-4" style="text-align:center;">
-                <a href="{% url 'content' novel.id %}">단편집에 담기</a>
+                <a href="{% url 'content' novel.id %}"><button>단편집에 담기</button></a>
             </div>
         </div>
     </div>
