@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.conf import settings
 import os
 from uuid import uuid4
 from django.utils import timezone
@@ -80,7 +80,7 @@ class Book(models.Model):
                 ("애니메이션"),
     )
     title = models.CharField(max_length=150)                            # book 제목
-    editor = models.ForeignKey(User, on_delete=models.CASCADE)          # 엮은이
+    editor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)          # 엮은이
     editDate = models.DateField()                                       # book 엮은 날짜
     bookImage = models.ImageField(upload_to="book/")      # book 표지
     bookPrice = models.IntegerField(null = True,default=0)              # book 가격
