@@ -10,25 +10,24 @@
     <a href="{% url 'novel' novel.id%}" style="font-family:Georgia"> ⇦ Novel Detail</a>
     <style>
         body {
-            background-color: whitesmoke;   
-            padding:5rem;
+            background-color: whitesmoke;
+            padding: 5rem;
             position: relative;
         }
+
         table {
             align-items: center;
             border-top-width: 50px;
             /* 이거 안된다 세로 가운데 정렬 하고싶다 */
         }
-
     </style>
 </head>
 
 
 
-
 <body>
     <div class="row" style="margin:0px;">
-        <div class="col-md-2">    
+        <div class="col-md-2">
             <div id="list-example" class="list-group">
                 <a class="list-group-item list-group-item-action" href="#list-item-1">{{novel.title}}</a>
                 <a class="list-group-item list-group-item-action" href="#list-item-2">{{novel.author}}</a>
@@ -37,16 +36,19 @@
         </div>
 
         <div class="col-md-9">
-            <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="height: 600px;overflow: auto;">
+            <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example"
+                style="height: 600px;overflow: auto;">
                 <div id="list-item-1" style="text-align: center;height:100%;">
-                    <table width="700" height="300" align = "center">
+                    <table width="700" height="300" align="center">
                         <tr>
                             <td rowspan="6" style="width: 18rem; height: fit-content;">
                                 {% if novel.novelImage %}
                                 <img src="{{novel.novelImage.url}}" style="width: 100%;">
                                 {% endif %}
                             </td>
-                            <td><h3>{{novel.title}}</h3></td>
+                            <td>
+                                <h3>{{novel.title}}</h3>
+                            </td>
                         </tr>
                         <tr>
                             <td>{{novel.author}}</td>
@@ -56,10 +58,9 @@
                 <hr>
                 <h4 id="list-item-3">Content</h4>
                 <p>{{novel.novelContent|linebreaksbr}}</p>
-                </div>
+            </div>
         </div>
     </div>
-
 </body>
 
 </html>

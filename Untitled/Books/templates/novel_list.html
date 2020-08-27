@@ -13,22 +13,24 @@
             background-color: lightpink;
             height: 56px;
         }
-    
+
         #menu {
             background-color: mediumaquamarine;
             height: 50px;
         }
-    
+
         #main {
             /* background-color: lightskyblue; */
             margin-left: 1em;
+
+            
         }
-    
+
         #footer {
             background-color: lightgoldenrodyellow;
             height: 100px;
         }
-    
+
         .rectangle {
             /* overflow: hidden;
                 display: flex;
@@ -41,10 +43,10 @@
             display: inline-block;
             cursor: pointer;
         }
-    
+
         .two-line {
             display: -webkit-box;
-            -webkit-line-clamp: 2;
+            -webkit-line-clamp: 1;
             -webkit-box-orient: vertical;
             width: 13rem;
             height: fit-content;
@@ -52,23 +54,15 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
+
+        .box:nth-of-type(n+7) {
+            display: none;
+        }
     </style>
 </head>
 
 <body>
-    <!-- My Page와 Login/Logout 버튼이 포함된 Navbar -->
-    <nav class="navbar navbar-light" style="background-color: lightgray;">
-        <a class="navbar-brand mb-0 h1" href="{% url 'main'%}">Untitled</a>
-        <div style="background-color: lightgray; ">
-            <a class="navbar-brand mb-0 h1" href = "{% url 'new'%}">글쓰기</a>
-        </div>
-        <div style="text-align: right;">
-            <button type="button" class="btn btn-warning mr-sm-2"
-                style="width: 120px; text-align: right; border-radius: 2em;">My
-                Page</button> <!-- 추후 남는 공간에 사람모양 아이콘 추가-->
-            <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;">Login</button>
-        </div> <!-- 버튼 클릭시 변화가 일어나는 효과도 적용할까? 그건 나중에 -->
-    </nav>
+    {% include "navbar.html"%}
 
     <!-- Book과 Novel의 목록을 선택할 수 있도록 하는 Navbar -->
     <div style="display: inline;">
@@ -90,38 +84,38 @@
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main">
-        {% for i in category_name%}
-        <div style="margin-top: 1em;" onclick="location.href='{% url 'novel_category' %}?category={{i}}' "> <!-- 나중에 여기서 onclick 속성 부여 -->
-            <h2>
-                <span>{{i}}</span>
-                <span style="float: right; margin-right: 20%;">></span>
-            </h2>
-        </div> 
-        {% for novel in novels %}
-        {% if novel.novelCategory == i %}
-        <div class="wrapper" style="max-width: 800px;">
-            <div style="width: fit-content; height :fit-content; float: left;">
-                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
-                    {% if novel.novelImage %}
-                    <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
-                    {% endif %}
-                </div>
-                <div style="text-align: center; line-height: 0.2rem;">
-                    <h6 class="two-line">{{novel.title}}</h6>
-                    {{novel.author}}
-                </div>
+        {% for category in categories%}
+        <div>
+            <div style="margin-top: 1em;" onclick="location.href='{% url 'novel_category' %}?q={{category}}' ">
+                <h2>
+                    <span>{{category}}</span>
+                    <span style="float: right; margin-right: 20%;">></span>
+                </h2>
             </div>
+            <div class="wrapper" style="max-width: 800px;">
+                {% for novel in novels %}
+                {% if novel.novelCategory == category %}
+                <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                    <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                        <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
+                    </div>
+                    <div style="text-align: center; line-height: 0.2rem;">
+                        <h6 class="two-line">{{novel.title}}</h6>
+                        {{novel.author}}
+                    </div>
+                </div>
+                {%endif%}
+                {%endfor%}
+            </div>
+            <div style="clear: both; height: 0; overflow: hidden;"></div>
         </div>
-        {%endif%}
-        {%endfor%}
-        <div style="clear: both; height: 0; overflow: hidden;"></div>
         <br><hr>
         {% endfor %}
     </div>
 
     <!-- Footer 구간 -->
     <div id="footer">
-        
+
     </div>
 </body>
 

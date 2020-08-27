@@ -11,22 +11,22 @@ def main(request):
     # 1. DB 내에 존재하는 전체 Book의 정보
     books = Book.objects.all()
     count = 0
-    category_name = []
+    categories = []
     for i in Book.category:
-        category_name.append(Book.category[count][0])
+        categories.append(Book.category[count][0])
         count = count + 1
     
-    return render(request, 'main.html', {'books':books, 'category_name':category_name})
+    return render(request, 'main.html', {'books':books, 'categories':categories})
 
 def novel_list(request):
     novels = Novel.objects.all()
     count = 0
-    category_name = []
+    categories = []
     for i in Novel.category:
-        category_name.append(Novel.category[count][0])
+        categories.append(Novel.category[count][0])
         count = count + 1
     
-    return render(request, 'novel_list.html', {'novels':novels, 'category_name':category_name})
+    return render(request, 'novel_list.html', {'novels':novels, 'categories':categories})
 
 def new(request):
     if request.method == "POST":
@@ -89,7 +89,7 @@ class TaggedObjectLV(ListView):
         return context
 
 def novel_category(request):
-    category = request.GET.get('category')
+    category = request.GET.get('q')
     novels = Novel.objects.all()
     sieved_novels = []
     for novel in novels:
@@ -99,7 +99,7 @@ def novel_category(request):
     return render(request, 'novel_category.html', {'category': category, 'sieved_novels':sieved_novels})
 
 def book_category(request):
-    category = request.GET.get('category')
+    category = request.GET.get('q')
     books = Book.objects.all()
     sieved_books = []
     for book in books:

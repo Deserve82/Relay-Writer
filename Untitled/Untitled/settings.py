@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Users',
     'taggit.apps.TaggitAppConfig',
     'taggit_templatetags2',
+    'octicons',
 ]
 
 MIDDLEWARE = [
