@@ -41,8 +41,8 @@ class Novel(models.Model):
         ("여행", "여행"),
         ("라이프스타일", "라이프스타일"),
         ("부모", "부모"),
-        ("어린이/청소년", "어린이/청소년"),
-        ("판타지/무협", "판타지/무협"),
+        ("어린이와청소년", "어린이와청소년"),
+        ("판타지와무협", "판타지와무협"),
         ("로맨스", "로맨스"),
         ("만화", "만화"),
         ("애니메이션", "애니메이션"),
@@ -56,7 +56,6 @@ class Novel(models.Model):
     novelPrice = models.IntegerField(null = True,default=0)         # novel 가격
     novelContent = models.TextField()                               # novel 내용
     tags = TaggableManager(blank=True)                              # novel 태그
-
 
 class Book(models.Model):
     category = (
@@ -73,12 +72,13 @@ class Book(models.Model):
         ("여행", "여행"),
         ("라이프스타일", "라이프스타일"),
         ("부모", "부모"),
-        ("어린이/청소년", "어린이/청소년"),
-        ("판타지/무협", "판타지/무협"),
+        ("어린이와청소년", "어린이와청소년"),
+        ("판타지와무협", "판타지와무협"),
         ("로맨스", "로맨스"),
         ("만화", "만화"),
         ("애니메이션", "애니메이션"),
-    )
+    ) # category 페이지의 url을 위해서 "어린이/청소년" -> "어린이와청소년"으로 변경했다.
+      # 인자를 넘겨줄 때, regex로 "/"를 "_"로 변경할 수는 없을까? import re 해서 .replace("/", "_") 하면 되긴 하는데 어떻게 적용해야 하는지 모르겠다ㅠㅠ
     title = models.CharField(max_length=150)                            # book 제목
     editor = models.ForeignKey(User, on_delete=models.CASCADE)          # 엮은이
     bookCategory = models.CharField(max_length = 50, choices=category, default = '')    # book 카테고리
@@ -86,4 +86,4 @@ class Book(models.Model):
     bookImage = models.ImageField(upload_to="book/")                    # book 표지
     bookPrice = models.IntegerField(null = True,default=0)              # book 가격
     contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n
-    #tags = TaggableManager(blank=True)            
+    #tags = TaggableManager(blank=True)                                 # book 태그

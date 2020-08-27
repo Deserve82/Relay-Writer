@@ -10,13 +10,23 @@ def main(request):
     # main 페이지로 넘겨줘야 할 정보가 무엇이 있을까
     # 1. DB 내에 존재하는 전체 Book의 정보
     books = Book.objects.all()
+    count = 0
+    category_name = []
+    for i in Book.category:
+        category_name.append(Book.category[count][0])
+        count = count + 1
     
-    return render(request, 'main.html', {'books':books})
+    return render(request, 'main.html', {'books':books, 'category_name':category_name})
 
 def novel_list(request):
     novels = Novel.objects.all()
+    count = 0
+    category_name = []
+    for i in Novel.category:
+        category_name.append(Novel.category[count][0])
+        count = count + 1
     
-    return render(request, 'novel_list.html', {'novels':novels})
+    return render(request, 'novel_list.html', {'novels':novels, 'category_name':category_name})
 
 def new(request):
     if request.method == "POST":
@@ -62,6 +72,7 @@ def book_content(request,book_id):
     book = get_object_or_404(Book, pk = book_id)
     return render(request, 'book_content.html',{'book':book})
 
+class TagCloudTV(TemplateView):
     template_name = 'taggit/taggit_cloud.html'
 
 class TaggedObjectLV(ListView):
@@ -76,3 +87,23 @@ class TaggedObjectLV(ListView):
         context = super().get_context_data(**kwargs)
         context['tagname'] = self.kwargs['tag']
         return context
+
+def novel_category(request):
+    category = request.GET.get('category')
+    novels = Novel.objects.all()
+    sieved_novels = []
+    for novel in novels:
+        if novel.novelCategory == category:
+            sieved_novels.append(novel)
+
+    return render(request, 'novel_category.html', {'category': category, 'sieved_novels':sieved_novels})
+
+def book_category(request):
+    category = request.GET.get('category')
+    books = Book.objects.all()
+    sieved_books = []
+    for book in books:
+        if book.bookCategory == category:
+            sieved_books.append(book)
+
+    return render(request, 'book_category.html', {'category': category, 'sieved_books':sieved_books})

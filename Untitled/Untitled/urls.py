@@ -21,6 +21,7 @@ import Books.urls
 from django.conf import settings
 from django.conf.urls.static import static
 import Books.views
+import re
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -33,4 +34,6 @@ urlpatterns = [
     path('book_content/<int:book_id>', Books.views.book_content, name="book_content"),
     path('tag/', Books.views.TagCloudTV.as_view(), name='tag_cloud'),
     path('tag/<str:tag>', Books.views.TaggedObjectLV.as_view(), name='tagged_object_list'),
+    path('novel_category', Books.views.novel_category, name='novel_category'),
+    path('book_category', Books.views.book_category, name='book_category'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

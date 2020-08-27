@@ -21,7 +21,7 @@
     
         #main {
             /* background-color: lightskyblue; */
-            height: 2000px;
+            margin-left: 1em;
         }
     
         #footer {
@@ -90,66 +90,38 @@
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main">
-        <!-- {% comment %}
-        {% for 카테고리의 수만큼 %}
-            {% if 카테고리가 존재하면 %}
-                <div>
-                카테고리.이름 : 카테고리.미리설정해둔문구
-                ## 일단 회색 책 칸은 6개만 나오게 그리구 ##
-                ## 차례대로 존재하는 book or novel만 사진에 올리기 ##
+        {% for i in category_name%}
+        <div style="margin-top: 1em;" onclick="location.href='{% url 'novel_category' %}?category={{i}}' "> <!-- 나중에 여기서 onclick 속성 부여 -->
+            <h2>
+                <span>{{i}}</span>
+                <span style="float: right; margin-right: 20%;">></span>
+            </h2>
+        </div> 
+        {% for novel in novels %}
+        {% if novel.novelCategory == i %}
+        <div class="wrapper" style="max-width: 800px;">
+            <div style="width: fit-content; height :fit-content; float: left;">
+                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                    {% if novel.novelImage %}
+                    <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
+                    {% endif %}
                 </div>
-            {% endif %}
-            <hr>
-        {% endfor %}
-        {% endcomment %} -->
-        
-        <div style="margin-left: 2em;">
-            <div style="margin-top: 1em;">
-                <h2>
-                    <span>문학/소설 : 감성 채우기에 딱!</span>
-                    <span style="float: right; margin-right: 20%;">></span>
-                </h2>
-            </div> <!-- 나중에 이 div 영역 전체를 클릭 후 이동할 수 있는 식으로 변경 -->
-            
-            <!-- 이 부분 나중에 Category 별로 나눠서 보여줄 수 있도록 수정 -->            
-
-            {% for novel in novels|slice:":6" %}
-            <div class="wrapper" style="max-width: 800px;">
-                <div style="width: fit-content; height :fit-content; float: left;">
-                    <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
-                        {% if novel.novelImage %}
-                        <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
-                        {% endif %}
-                    </div>
-                    <div style="text-align: center; line-height: 0.2rem;">
-                        <h6 class="two-line">{{novel.title}}</h6>
-                        {{novel.author}}
-                    </div>
+                <div style="text-align: center; line-height: 0.2rem;">
+                    <h6 class="two-line">{{novel.title}}</h6>
+                    {{novel.author}}
                 </div>
             </div>
-            <!-- {{forloop.counter|add:forloop.revcounter0}} -->
-            {% endfor %}
-
-            <!-- 해당 컨텐츠가 6개 이하인 n개가 존재하더라도, 6-n만큼의 빈 회색 박스를 보여주고 싶은데 어떻게 하지....ㅠㅠ
-            {%comment%}
-            {% if novels|length|add:-6 < 0 %}
-            여기서 >0 이 될 때까지 반복을 돌려야 하는데 템플릿 내에서 해결할 수 있는 방법이 없을까
-            {% endif %}
-            {%endcomment%}
-            -->
-            <div style="clear: both; height: 0; overflow: hidden;"></div>   <!-- float clear. 왜  :after 가상요소로 구성해서 안되지?ㅠㅠㅠ -->
-
         </div>
-
-
-
-
-
+        {%endif%}
+        {%endfor%}
+        <div style="clear: both; height: 0; overflow: hidden;"></div>
+        <br><hr>
+        {% endfor %}
     </div>
 
     <!-- Footer 구간 -->
     <div id="footer">
-        footer
+        
     </div>
 </body>
 
