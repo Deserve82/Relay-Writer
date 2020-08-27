@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from django.utils import timezone
 from .form import WriteForm
+from django.views.generic import ListView, DeleteView, TemplateView
 
 def main(request):
     # book과 novel의 list 페이지를 서로 분리할까? 아니면 redirect 시키는 방식으로 할까?
@@ -61,3 +62,17 @@ def book_content(request,book_id):
     book = get_object_or_404(Book, pk = book_id)
     return render(request, 'book_content.html',{'book':book})
 
+    template_name = 'taggit/taggit_cloud.html'
+
+class TaggedObjectLV(ListView):
+    template_name = 'taggit/taggit_post_list.html'
+    model = Novel
+
+    def get_queryset(self):
+        return Novel.objects.filter(tags__name=self.kwargs.get('tag'))
+        # Novel 뿐만이 아니라 Book도 받아오려면 여기를 손보면 될듯!
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['tagname'] = self.kwargs['tag']
+        return context

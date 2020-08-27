@@ -66,7 +66,22 @@
             {% csrf_token %}
             <input type="text" name="body" placeholder="tag your comment">
             <button type="submit">Submit</button>
-            </form>
+        </form>
+
+        <!-- django-taggit. 사용하지 않기로 함!
+        {%comment%} 
+            <div>
+            <b>TAGS</b>
+            {% load taggit_templatetags2_tags %}
+            {% get_tags_for_object novel as "tags" %}
+            {% for tag in tags %}
+            <a href="{% url 'tagged_object_list' tag.name %}">{{tag.name}}</a>
+            {% endfor %}
+        &emsp;
+            <a href="{% url 'tag_cloud' %}"> <span class="btn btn-info btn-sm">TagCloud</span> </a>
+        </div>
+        {%endcomment%}
+        -->
     </div>
 
     <hr>

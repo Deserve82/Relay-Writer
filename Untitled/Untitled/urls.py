@@ -31,5 +31,6 @@ urlpatterns = [
     path('content/<int:novel_id>', Books.views.content, name="content"),
     path('book/<int:book_id>', Books.views.book, name="book"),
     path('book_content/<int:book_id>', Books.views.book_content, name="book_content"),
+    path('tag/', Books.views.TagCloudTV.as_view(), name='tag_cloud'),
+    path('tag/<str:tag>', Books.views.TaggedObjectLV.as_view(), name='tagged_object_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
