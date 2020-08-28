@@ -1,3 +1,5 @@
+{% extends 'base.html' %}
+{% block content %}
 <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
@@ -25,7 +27,26 @@
       <form class="mt-8" method="POST">
         {% csrf_token %}
         <div class="-mt-px">
-          {{ form.as_table }}
+          <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input id="username" type="text" class="form-control" name="username" placeholder="유저네임을 입력하세요">
+          </div>
+          <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input id="email" type="text" class="form-control" name="email" placeholder="이메일을 입력하세요">
+          </div>
+          <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+            <input id="password" type="password" class="form-control" name="password" placeholder="패스워드를 입력하세요">
+          </div>
+          <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input id="nickname" type="text" class="form-control" name="nickname" placeholder="닉네임을 입력하세요">
+          </div>
+          <div class="input-group" style="margin-bottom: 5px;">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+            <input id="phone_number" type="text" class="form-control" name="phone_number" placeholder="휴대폰 번호를 입력하세요">
+          </div>
         </div>
   
         <div class="mt-6 flex items-center justify-between">
@@ -57,3 +78,4 @@
       </form>
     </div>
   </div>
+  {% endblock %}
