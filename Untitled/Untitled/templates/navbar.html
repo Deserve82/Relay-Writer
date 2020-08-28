@@ -23,7 +23,6 @@
         <!-- 여기에 회원가입/로그아웃 등도 추가해서 사용 -->
         {% if user.is_authenticated %}
         <div>
-
             <a type="button" onclick="location.href='{% url 'new'%}'"><i class="fas fa-pen-nib"></i></a>
             <a type="button" style="border-radius: 2em; width:50px"><i class="fas fa-user"></i></a>
             <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'logout' %}'"><i class="fas fa-sign-out-alt"></i></a>

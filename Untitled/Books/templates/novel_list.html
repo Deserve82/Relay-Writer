@@ -79,7 +79,7 @@
             text-overflow: ellipsis;
         }
 
-        .box:nth-of-type(n+7) {
+        .box:nth-of-type(n+4) {
             display: none;
         }
 
@@ -110,9 +110,6 @@
     <div>
         <img src="{%static '배너.jpg'%}" class="padding" style="position: relative;">
     </div>
-    
-   
-
     <!-- Book과 Novel의 목록을 선택할 수 있도록 하는 Navbar -->
     <div style="display: inline;">
         <nav class="navbar navbar-light padding" style="width: 50%; float: left;">
@@ -130,6 +127,11 @@
             </ul>
         </nav>
     </div>
+    <form method="GET" class="form-inline my-2 my-lg-0" action="{%url 'search_novel'%}" style="margin-left: 15%; padding: 1rem;">
+        <input id="searchbar" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="w" style="width: 70%;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="검색">Search</button>
+    </form>
+    <hr>
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main" class="padding">
@@ -144,7 +146,7 @@
             <div class="wrapper" style="max-width: 800px;">
                 {% for novel in novels %}
                 {% if novel.novelCategory == category %}
-                <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                <div class="box" style="width: 208px; height :260px; float: left;">
                     <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
                         <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
                     </div>
@@ -154,6 +156,12 @@
                     </div>
                 </div>
                 {%endif%}
+                {%endfor%}
+                {%for i in "x"|rjust:"6"%}
+                <!-- 객체가 6개보다 적으면 빈 박스를 만들어서 이쁘게 만드는 기능 -->
+                <div class="box" style="width: 208px; height :260px; float: left;">
+                    <div class="rectangle" style="cursor: unset;"></div>
+                </div>
                 {%endfor%}
             </div>
             <div style="clear: both; height: 0; overflow: hidden;"></div>

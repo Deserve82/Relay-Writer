@@ -37,4 +37,6 @@ urlpatterns = [
     path('Books/tagging/<int:novel_id>', Books.views.tagging, name="tagging"),
     path('users/', include(Users.urls)),
     path('Books/like/<int:novel_id>', Books.views.like, name="like"),
+    path('novel/buy/<int:novel_id>', Books.views.buy_novel, name='buy_novel'),
+    path('search/', Books.views.search_novel, name='search_novel'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

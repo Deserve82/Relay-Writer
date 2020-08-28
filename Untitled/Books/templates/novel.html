@@ -141,12 +141,10 @@
                     </div> 
 
 
-            <!-- 5 엮기(내 Book에 넣기) -->
-                    <!-- 단편집에 담기 어떻게 할지 고민 -->
-                    <div class="col-md-4" style="text-align:center;">
-                        <a href="{% url 'content' novel.id %}"><button>단편집에 담기</button></a>
-                    </div>
-                </div>
+    <!-- 5 엮기(내 Book에 넣기) -->
+            <!-- 단편집에 담기 어떻게 할지 고민 -->
+            <div class="col-md-4" style="text-align:center;">
+                <a href="{% url 'buy_novel' novel.id %}"><button>단편집에 담기</button></a>
             </div>
         </div>
     </div>
