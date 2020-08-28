@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 import Books.urls
+import Users.urls
 from django.conf import settings
 from django.conf.urls.static import static
 import Books.views
@@ -36,4 +37,6 @@ urlpatterns = [
     path('tag/<str:tag>', Books.views.TaggedObjectLV.as_view(), name='tagged_object_list'),
     path('novel_category', Books.views.novel_category, name='novel_category'),
     path('book_category', Books.views.book_category, name='book_category'),
+    path('Books/tagging/<int:novel_id>', Books.views.tagging, name="tagging"),
+    path('users/', include(Users.urls))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

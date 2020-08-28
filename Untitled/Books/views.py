@@ -48,13 +48,21 @@ def update_novel(request, novel_id):
     update_novel.save()
     return redirect('/books/'+str(update_novel.id))
     
+
 def novel(request,novel_id):
     novel = get_object_or_404(Novel, pk = novel_id)    # class이름, pk=primal key -> DB에 있는 id  # 안되면 404페이지 띄워주세요
-    # 좋아요
+    tags = Tag.objects.filter(novel=novel)
 
     print(novel)
     # like_num = len(novel.like.all())
-    return render(request, 'novel.html',{'novel':novel}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
+    return render(request, 'novel.html',{'novel':novel,'tags':tags}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
+
+def tagging(request, novel_id):
+    new_tag = Tag()
+    new_tag.novel = get_object_or_404(Novel, pk = novel_id)
+    new_tag.body = request.POST.get('body')
+    new_tag.save()
+    return redirect('/novel/' + str(novel_id))
 
 def content(request,novel_id):
     novel = get_object_or_404(Novel, pk = novel_id)
