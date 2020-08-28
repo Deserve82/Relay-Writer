@@ -6,6 +6,7 @@ from django.db import models
 
 
 class CustomUserModel(AbstractUser):
+    point = models.IntegerField(null=False, default=0)
     nickname = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20)
 

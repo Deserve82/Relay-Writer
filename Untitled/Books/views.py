@@ -1,7 +1,9 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .form import WriteForm
 from .models import *
+from django.db.models import Q
 
 
 def main(request):
@@ -100,17 +102,6 @@ def book_content(request, book_id):
     return render(request, 'book_content.html', {'book': book})
 
 
-def get_queryset(self):
-    return Novel.objects.filter(tags__name=self.kwargs.get('tag'))
-    # Novel 뿐만이 아니라 Book도 받아오려면 여기를 손보면 될듯!
-
-
-def get_context_data(self, **kwargs):
-    context = super().get_context_data(**kwargs)
-    context['tagname'] = self.kwargs['tag']
-    return context
-
-
 def novel_category(request):
     category = request.GET.get('q')
     novels = Novel.objects.all()
@@ -135,4 +126,36 @@ def book_category(request):
 
 def profile(request):
     username = request.GET.get('username')
-    return render(request, 'profile.html', {'username': username})
+    if username == None or username == "":
+        username = request.user.username
+    novels = Novel.objects.all()
+    result = []
+    return render(request, 'profile.html', {'result' : result, 'username': username})
+
+
+def buy_novel(request, novel_id):
+    novel = get_object_or_404(Novel, pk=novel_id)
+    user = request.user
+    if user.is_authenticated:
+        if novel.novelPrice > user.point:
+            return HttpResponse('보유 포인트가 적습니다.')
+        else:
+            user.point -= novel.novelPrice
+            novel.owners.add(user)
+            author = novel.author
+            author.point += novel.novelPrice
+            author.save()
+            user.save()
+            novel.save()
+            return redirect('main')
+    else:
+        return HttpResponse('로그인 해주세요.')
+
+def search_novel(request):
+    w = request.GET.get('w') or ""
+    
+    search_result = Novel.objects.filter(
+            Q(title__icontains=w)
+        ).distinct() # 중복사항 제거
+
+    return render(request, 'search.html', {"w": w, "search_result":search_result})
