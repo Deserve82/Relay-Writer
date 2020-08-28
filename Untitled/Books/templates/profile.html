@@ -282,6 +282,14 @@
             <div class="panel-body">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
+                        {%for novel in written_novel%}
+                        <div>
+                        {% if novel.novelImage %}
+                        <img src="{{novel.novelImage.url}}">
+                        {% endif %}
+                        <p>{{novel.title}}</p>
+                        </div>
+                        {%endfor%}
 
                     </div>
                         <div class="tab-pane" id="tab2" margin:auto;>
@@ -298,6 +306,15 @@
                         </div>
                     
                         <div class="tab-pane" id="tab3">
+                            {% for novel in like%}
+                            <div>
+                            {% if novel.novelImage %}
+                            <img src="{{novel.novelImage.url}}">
+                            {% endif %}
+                            <p>{{novel.title}}</p>
+                            </div>
+                            {%endfor%}
+                            </div>
 
                         </div>
                 </div>
