@@ -9,6 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        body {
+            background-color: whitesmoke;
+        }
+
+        .padding{
+            padding-right: 20rem;
+            padding-left: 20rem;
+        }
 
         .rectangle {
             /* overflow: hidden;
@@ -37,16 +45,6 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light" style="background-color: lightgray; height: 5em;">
-        <a class="navbar-brand mb-0" href="{% url 'main'%}" style="width: fit-content;"><h2><strong>Untitled</strong></h2></a>
-        <h1 style="text-align: center; margin-right: 2em;">{{category}}</h1>
-        <div>
-            <button type="button" class="btn btn-warning mr-sm-2" style="width: 5em; text-align: right; border-radius: 2em;" onclick="location.href='{% url 'main' %}' ">
-                &lt; Prev
-            </button>
-        </div>
-    </nav>
-
     <div style="text-align: center;">
     <br> 여기에 계획대로 Search 기능을 추가해야 할까?<br>
     귀찮은떼

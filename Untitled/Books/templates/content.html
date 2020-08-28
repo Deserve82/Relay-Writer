@@ -7,13 +7,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <a href="{% url 'novel' novel.id%}" style="font-family:Georgia"> ⇦ Novel Detail</a>
+
     <style>
         body {
             background-color: whitesmoke;
-            padding: 5rem;
-            padding-right: 25rem;
-            padding-left: 25rem;
+        }
+
+        .padding{
+            padding-right: 20rem;
+            padding-left: 20rem;
         }
         
         a {text-decoration: none;}
@@ -36,16 +38,20 @@
             color: whitesmoke;
         }
 
+        .list-group-item.active {
+            z-index: 2;
+            color: #fff;
+            background-color: olivedrab;
+            border-color: olivedrab;
+        }
     </style>
 </head>
 
-
-<br>
-<br>
-<br>
 <body>
-    <div class="row" style="margin:0px;">
-        <div class="col-md-2" style="position: relative;right:10px; padding:0;">
+    <div style="position: relative;top:-220px">
+        <a href="{% url 'novel' novel.id%}" style="font-family:Georgia;position: relative;left:40px"> ⇦ Novel Detail</a>
+    <div class="row padding" style="margin:0px;">
+        <div class="col-md-3" style="position: relative;right:10px; padding:0;">
             <div id="list-example" class="list-group">
                 <a class="list-group-item list-group-item-action" href="#list-item-1">
                     <h5>{{novel.title}}</h5>
@@ -56,7 +62,7 @@
         </div>
 
 
-        <div class="col-md-9">
+        <div class="col-md-9" >
             <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example"
                 style="height: 600px;overflow: auto;">
                 <div id="list-item-1" style="text-align: center;height:100%;">
@@ -81,6 +87,7 @@
                 <p>{{novel.novelContent|linebreaksbr}}</p>
             </div>
         </div>
+    </div>
     </div>
 </body>
 

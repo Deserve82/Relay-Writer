@@ -5,6 +5,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <style>
+    body {
+      background-color: whitesmoke;
+    }
+
+    .padding{
+      padding-right: 20rem;
+      padding-left: 20rem;
+    }
+    
       @font-face {
         font-family: 'NanumMyeongjo';
         src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
@@ -13,6 +22,7 @@
       }
     </style>
   </head>
+  <div style="position: relative;top:-220px">
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full">
       <div>
@@ -77,5 +87,6 @@
         </div>
       </form>
     </div>
+  </div>
   </div>
   {% endblock %}

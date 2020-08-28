@@ -7,32 +7,31 @@
         height: 36px;
         line-height: 5px;
     }
-    
-</style>
 
-<nav class="navbar navbar-light" style="background-color: lightgray; height: 5em;">
-    <a class="navbar-brand mb-0" href="{% url 'main'%}"><h2><strong>Untitled</strong></h2></a>
+    nav{
+        padding: 5rem;
+        padding-right: 25rem;
+        padding-left: 25rem;
+    }
+</style>
+<script src="https://kit.fontawesome.com/df0269d983.js" crossorigin="anonymous"></script>
+<nav class="navbar navbar-light" style="background-color:; height: 7em;">
+    <a class="navbar-brand mb-0" href="{% url 'main'%}"><h2 style="font-style: italic;"><strong>⠀Untitled</strong></h2></a>
 
     <div style="text-align: right;">
         <!-- 일단 이걸로 사용을 하고, 나중에 user 추가되면 밑에 껄로 사용 -->
         <!-- 여기에 회원가입/로그아웃 등도 추가해서 사용 -->
         {% if user.is_authenticated %}
         <div>
-            <span style="margin-right: 3px;">
-                <strong>안녕하세요 {{user.username}}님</strong>
-            </span>
-            <button type="button" class="btn btn-outline-warning" onclick="location.href='{% url 'new'%}'">글쓰기</button>
-            <button type="button" class="btn btn-warning mr-sm-2"
-                style="width: 100px; height: 36px text-align: right; border-radius: 2em;" onclick="location.href='{% url 'profile' %}'">
-                <div style="display: inline-block; margin-right: 5px; margin-bottom: 3px;">{% octicon "person" height="20" %}
-                </div>
-                <span>내 정보</span>
-            </button>
-            <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;" onclick="location.href='{% url 'logout' %}'">로그아웃</button>
+            <a type="button" onclick="location.href='{% url 'new'%}'"><i class="fas fa-pen-nib"></i></a>
+            <a type="button" style="border-radius: 2em; width:50px"><i class="fas fa-user"></i></a>
+            <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'logout' %}'"><i class="fas fa-sign-out-alt"></i></a>
+            <a type="button" style="border-radius: 2em; width:20px"></a>
         </div>
         {%else%}
-        <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;" onclick="location.href='{% url 'signin' %}'">로그인</button>
-        <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;" onclick="location.href='{% url 'signup' %}'">회원가입</button>
+        <a type="button" style="border-radius: 2em;  width:50px" onclick="location.href='{% url 'signin' %}'"><i class="fas fa-sign-in-alt"></i></a>
+        <a type="button" style="border-radius: 2em;  width:50px" onclick="location.href='{% url 'signup' %}'"><i class="fas fa-user-plus"></i></a>
         {%endif%}
     </div> <!-- 버튼 클릭시 변화가 일어나는 효과도 적용할까? 그건 나중에 -->
 </nav>
+
