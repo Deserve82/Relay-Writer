@@ -35,6 +35,7 @@ class Novel(models.Model):
     novelPrice = models.IntegerField(null=True, default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
     like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'likers')
+    novelCategory = models.CharField(max_length=50, choices=category, default='')    # novel 카테고리
 
 
 class Tag(models.Model):
