@@ -148,6 +148,9 @@ def buy_novel(request, novel_id):
         else:
             user.point -= novel.novelPrice
             novel.owners.add(user)
+            author = novel.author
+            author.point += novel.novelPrice
+            author.save()
             user.save()
             novel.save()
             return redirect('main')
