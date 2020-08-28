@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .rectangle {
+            /* overflow: hidden;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center; */
+            width: 140px;
+            height: 180px;
+            background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .two-line {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            width: 13rem;
+            height: fit-content;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-light" style="background-color: lightgray; height: 5em;">
+        <a class="navbar-brand mb-0" href="{% url 'main'%}" style="width: fit-content;"><h2><strong>Untitled</strong></h2></a>
+        <h1 style="text-align: center; margin-right: 2em;">{{category}}</h1>
+        <div>
+            <button type="button" class="btn btn-warning mr-sm-2" style="width: 5em; text-align: right; border-radius: 2em;" onclick="location.href='{% url 'main' %}' ">
+                &lt; Prev
+            </button>
+        </div>
+    </nav>
+
+    <div style="text-align: center;">
+    <br> 여기에 계획대로 Search 기능을 추가해야 할까?<br>
+    귀찮은떼
+    <br>
+    <hr>
+    </div>
+
+    <div class="wrapper" style="max-width: 800px; text-align: center;">
+    {% for book in sieved_books %}
+        <div class="dd" style="width: fit-content; height :fit-content; float: left;">
+            <div class="rectangle" onclick="location.href='{% url 'book' book.id %}' ">
+                {% if book.bookImage %}
+                <img class="book_img" src="{{book.bookImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
+                {% endif %}
+            </div>
+            <div style="text-align: center; line-height: 0.2rem;">
+                <h6 class="two-line">{{book.title}}</h6>
+                {{book.author}}
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    
+
+</body>
+</html>
+
+{% endblock %}

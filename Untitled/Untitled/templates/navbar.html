@@ -1,0 +1,35 @@
+{% load octicons %}
+<style>
+    .btn-outline-warning {
+        color: black;
+        border-radius: 2em;
+        border-width: 3px;
+        height: 36px;
+        line-height: 5px;
+    }
+    
+</style>
+
+<nav class="navbar navbar-light" style="background-color: lightgray; height: 5em;">
+    <a class="navbar-brand mb-0" href="{% url 'main'%}"><h2><strong>Untitled</strong></h2></a>
+
+    <div style="text-align: right;">
+        <!-- 일단 이걸로 사용을 하고, 나중에 user 추가되면 밑에 껄로 사용 -->
+        <button type="button" class="btn btn-outline-warning" onclick="location.href='{% url 'new'%}'">글쓰기</button>
+        <button type="button" class="btn btn-warning mr-sm-2"style="width: 100px; height: 36px text-align: right; border-radius: 2em;">
+            <div style="display: inline-block; margin-right: 5px; margin-bottom: 3px;">{% octicon "person" height="20" %}</div>
+            <span>내 정보</span>
+        </button>
+        <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;">로그인</button>
+
+        <!-- 여기에 회원가입/로그아웃 등도 추가해서 사용 -->
+        {%comment%}
+        {% if user.is_authenticated %}
+        <button type="button" class="btn btn-outline-warning" onclick="location.href='{% url 'new'%}'">글쓰기</button>
+        <button type="button" class="btn btn-warning mr-sm-2"style="width: 120px; text-align: right; border-radius: 2em;">내 정보</button> <!-- 추후 남는 공간에 사람모양 아이콘 추가-->
+        {%else%}
+        <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;">로그인</button>
+        {%endif%}
+        {%endcomment%}
+    </div> <!-- 버튼 클릭시 변화가 일어나는 효과도 적용할까? 그건 나중에 -->
+</nav>

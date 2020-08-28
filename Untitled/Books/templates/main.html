@@ -9,19 +9,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        .btn-outline-warning{
+            color: black;
+            border-radius: 2em;
+            border-width:3px;
+            height: 36px;
+            line-height: 5px;
+        }
+    
         #header {
             background-color: lightpink;
             height: 56px;
         }
-
+    
         #menu {
             background-color: mediumaquamarine;
             height: 50px;
         }
-
+    
         #main {
             /* background-color: lightskyblue; */
-            height: 2000px;
+            margin-left: 1em;
         }
 
         #footer {
@@ -29,15 +37,38 @@
             height: 100px;
         }
 
-        #rectangle {
+        .rectangle {
+            /* overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center; */
             width: 140px;
             height: 180px;
             background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .two-line {
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            width: 13rem;
+            height: fit-content;
+            line-height: 20px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .box:nth-of-type(n+7) {
+            display: none;
         }
     </style>
 </head>
 
 <body>
+    {% include "navbar.html"%}
     <!-- My Page와 Login/Logout 버튼이 포함된 Navbar -->
     <nav class="navbar navbar-light" style="background-color: lightgray;">
         <a class="navbar-brand mb-0 h1" href="#">Untitled</a>
@@ -88,14 +119,14 @@
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%; float: left;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link mb-0 h5" href="#">Book <span class="sr-only">(current)</span></a>
+                    <a class="nav-link mb-0 h5" href="{% url 'main' %}">Book <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </nav>
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link mb-0 h5" href="#" style="text-align: center;">Novel</a>
+                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="text-align: center;">Novel</a>
                 </li>
             </ul>
         </nav>
@@ -103,49 +134,43 @@
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main">
-        <!-- {% comment %}
-        {% for 카테고리의 수만큼 %}
-            {% if 카테고리가 존재하면 %}
-                <div>
-                카테고리.이름 : 카테고리.미리설정해둔문구
-                ## 일단 회색 책 칸은 6개만 나오게 그리구 ##
-                ## 차례대로 존재하는 book or novel만 사진에 올리기 ##
-                </div>
-            {% endif %}
-            <hr>
-        {% endfor %}
-        {% endcomment %} -->
-
-        <div style="margin-left: 2em;">
-            <div style="margin-top: 1em;">
-                <h2>
-                    <span>문학/소설 : 감성 채우기에 딱!</span>
-                    <span style="float: right; margin-right: 20%;">></span>
-                </h2>
-            </div> <!-- 나중에 이 div 영역 전체를 클릭 후 이동할 수 있는 식으로 변경 -->
-
-            <div style="max-width: 800px;">
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-                <div id="rectangle" style="margin: 5% 5% 5% 5%; display: inline-block;"></div>
-            </div>
-
-
+        {% for category in categories%}
+        <div style="margin-top: 1em;" onclick="location.href='{% url 'book_category' %}?q={{category}}'">
+            <!-- 나중에 여기서 onclick 속성 부여 -->
+            <h2>
+                <span>{{category}}</span>
+                <span style="float: right; margin-right: 20%;">></span>
+            </h2>
         </div>
+        <div class="wrapper" style="max-width: 800px;">
+            {% for book in books %}
+            {% if book.bookCategory == category %}
+            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                <div class="rectangle" onclick="location.href='{% url 'book' book.id %}' ">
+                    {% if book.bookImage %}
+                    <img class="book_img" src="{{book.bookImage.url}}" alt=""
+                        style="height: 100%; width: 100%; object-fit: contain;">
+                    {% endif %}
+                </div>
+                <div style="text-align: center; line-height: 0.2rem;">
+                    <h6 class="two-line">{{book.title}}</h6>
+                    {{book.editor}}
+                </div>
+            </div>
+            {%endif%}
+            {%endfor%}
+        </div>
+        <div style="clear: both; height: 0; overflow: hidden;"></div>
+        <br>
         <hr>
+        {% endfor %}
+
     </div>
 
-   
     <!-- Footer 구간 -->
     <div id="footer">
-        footer
+
     </div>
-
-
-
 </body>
 
 </html>

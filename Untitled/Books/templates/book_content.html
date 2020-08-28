@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <a href="{% url 'book' book.id%}" style="font-family:Georgia"> ⇦ Book Detail</a>
+    <style>
+        body {
+            background-color: whitesmoke;   
+            padding:5rem;
+            position: relative;
+        }
+        table {
+            align-items: center;
+            border-top-width: 50px;
+            /* 이거 안된다 세로 가운데 정렬 하고싶다 */
+        }
+
+    </style>
+</head>
+
+
+
+
+<body>
+    <div class="row" style="margin:0px;">
+        <div class="col-md-2">    
+            <div id="list-example" class="list-group">
+                <a class="list-group-item list-group-item-action" href="#list-item-1">{{book.title}}</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-2">{{book.editor}}</a>
+                <a class="list-group-item list-group-item-action" href="#list-item-3">Content</a>
+                <!-- Content를 novel title로 고치고 싶다... 근데 book마다 novel 수가 다른데 이걸 어케 하징
+                    쪼끔 이따가 다시 고민해보는 걸로 -->
+            </div>
+        </div>
+
+        <div class="col-md-9">
+            <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example" style="height: 600px;overflow: auto;">
+                <div id="list-item-1" style="text-align: center;height:100%;">
+                    <table width="700" height="300" align = "center">
+                        <tr>
+                            <td rowspan="6" style="width: 18rem; height: fit-content;">
+                                {% if book.bookImage %}
+                                <img src="{{book.bookImage.url}}" style="width: 100%;">
+                                {% endif %}
+                            </td>
+                            <td><h3>{{book.title}}</h3></td>
+                        </tr>
+                        <tr>
+                            <td>{{book.editor}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <hr>
+                <h4 id="list-item-3">Content</h4>
+                {% for list in book.contents.all %}
+                <h5>{{list.title}}</h5>
+                <p>{{list.novelContent|linebreaksbr}}</p>
+                <br>
+                {% endfor %}
+                </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+{% endblock %}
