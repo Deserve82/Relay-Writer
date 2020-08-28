@@ -12,22 +12,40 @@
         body {
             background-color: whitesmoke;
             padding: 5rem;
-            position: relative;
+            padding-right: 25rem;
+            padding-left: 25rem;
+        }
+        
+        a {text-decoration: none;}
+
+        a:link{
+            color:black;
         }
 
-        table {
-            align-items: center;
-            border-top-width: 50px;
-            /* 이거 안된다 세로 가운데 정렬 하고싶다 */
+        a:visited {
+            color:black;
+            text-decoration: none;
         }
+
+        a:hover {
+            color:olivedrab;
+        }
+
+        ::selection {
+            background-color: olivedrab;
+            color: whitesmoke;
+        }
+
     </style>
 </head>
 
 
-
+<br>
+<br>
+<br>
 <body>
     <div class="row" style="margin:0px;">
-        <div class="col-md-2">
+        <div class="col-md-2" style="position: relative;right:10px; padding:0;">
             <div id="list-example" class="list-group">
                 <a class="list-group-item list-group-item-action" href="#list-item-1">
                     <h5>{{novel.title}}</h5>
@@ -42,7 +60,7 @@
             <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example"
                 style="height: 600px;overflow: auto;">
                 <div id="list-item-1" style="text-align: center;height:100%;">
-                    <table width="700" height="300" align="center">
+                    <table width="700" height="300" align="center" style="position: relative;top:110px">
                         <tr>
                             <td rowspan="6" style="width: 18rem; height: fit-content;">
                                 {% if novel.novelImage %}
