@@ -69,51 +69,6 @@
 
 <body>
     {% include "navbar.html"%}
-    <!-- My Page와 Login/Logout 버튼이 포함된 Navbar -->
-    <nav class="navbar navbar-light" style="background-color: lightgray;">
-        <a class="navbar-brand mb-0 h1" href="#">Untitled</a>
-        <div style="background-color: lightgray; ">
-            <a class="navbar-brand mb-0 h1" href = "{% url 'new'%}">글쓰기</a>
-        </div>
-        <div style="text-align: right;">
-            <button type="button" class="btn btn-warning mr-sm-2"
-                style="width: 120px; text-align: right; border-radius: 2em;" ><a class="navbar-brand mb-0 h3" href ="{% url 'profile' %}">My
-                    Page</a>
-            </button> <!-- 추후 남는 공간에 사람모양 아이콘 추가-->
-            <div> 
-                {% if user.is_authenticated %} 
-                    <h3>안녕하세요 {{user.username}}님</h3>
-                    <a href="{% url 'logout'%}">로그아웃</a>
-                {% else %}
-                <a href="{% url 'signin'%}">로그인</a>       
-                <a href="{% url 'signup'%}">회원가입</a>
-                <form method="POST" action="/signin">
-                    {% csrf_token %}
-                    {{ signin_form.as_p }}
-                    <input type="submit" value="submit">
-                </form>
-                {% endif %}
-            </div>
-                <!-- <a class=class="btn btn-warning mr-sm-2" href="{% url 'signin' %}">로그인</a>
-                {% if user.is_authenticated %}
-                <h2 class="masthead-subheading mb-0"> hello {{ user.username }} </h2>
-                {% else %}
-                <h2 class="masthead-subheading mb-0">hello likelion 8th</h2>
-                <a href="{% url 'signup' %}"> 회원가입하기 </a>
-      
-                 <form method="POST" action="/signin">
-                 {% csrf_token %}
-                 {{ signin_form.as_p }}
-                 <input type="submit" value="submit">
-                 </form>
-
-                {% endif %} -->
-            <!-- <button type="button" class="btn btn-warning mr-sm-2" style="border-radius: 2em;">
-                <a href="{% url 'signin' %}"></a>Login
-            </button> -->
-        </div> <!-- 버튼 클릭시 변화가 일어나는 효과도 적용할까? 그건 나중에 -->
-    </nav>
-
     <!-- Book과 Novel의 목록을 선택할 수 있도록 하는 Navbar -->
     <div style="display: inline;">
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%; float: left;">
