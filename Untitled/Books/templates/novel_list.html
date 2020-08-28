@@ -63,7 +63,6 @@
 
 <body>
     {% include "navbar.html"%}
-
     <!-- Book과 Novel의 목록을 선택할 수 있도록 하는 Navbar -->
     <div style="display: inline;">
         <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%; float: left;">
@@ -81,6 +80,11 @@
             </ul>
         </nav>
     </div>
+    <form method="GET" class="form-inline my-2 my-lg-0" action="{%url 'search_novel'%}" style="margin-left: 15%; padding: 1rem;">
+        <input id="searchbar" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="w" style="width: 70%;">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="검색">Search</button>
+    </form>
+    <hr>
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main">
