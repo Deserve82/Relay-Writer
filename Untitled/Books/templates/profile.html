@@ -228,7 +228,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <!-- <div class="panel panel-primary"> -->
+            <div class="panel panel-warning">
             <div class="panel-heading">
                 <div class="useravatar">
                     <br>
@@ -237,12 +237,12 @@
                     <center><img alt=""
                             src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png"
                             width="100">
-                        <div class="card-info"> <span class="card-title">{{username}}</span></div>
+                        <div class="card-info"> <span class="card-title">{{user.username}}</span></div>
                     </center>
-                    <div class="twPc-divStats">
+                    <!-- <div class="twPc-divStats">
                         <ul class="twPc-Arrange">
                             <li class="twPc-ArrangeSizeFit">
-                                <span class="twPc-StatLabel twPc-block">읽은 도서</span>
+                                <span class="twPc-StatLabel twPc-block">내가 작성한 도서</span>
                                 <span></span>
                                 </a>
                             </li>
@@ -257,7 +257,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </div>
+                    </div> -->
                     <br>
                     <br>
                     <br>
@@ -265,22 +265,41 @@
                 </div>
                 <span class="pull-right">
                     <!-- Tabs -->
+                    <br>
+                    <br>
                     <ul class="nav panel-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab">내가 쓴 책</a></li>
+                        <li class="active"><a href="#tab1" data-toggle="tab">내가 작성한 도서</a></li>
                         <li><a href="#tab2" data-toggle="tab">도서 모음집</a></li>
+                        <li><a href="#tab3" data-toggle="tab">좋아요</a></li>
                     </ul>
                 </span>
             </div>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
             <div class="panel-body">
                 <div class="tab-content">
                     <div class="tab-pane active" id="tab1">
 
                     </div>
-                </div>
-                
-        
-                    </div>
-                    <div class="tab-pane" id="tab2"></div>
+                        <div class="tab-pane" id="tab2" margin:auto;>
+                        <div class="col-md-10">
+                            {% for novel in novels%}
+                            <div>
+                            {% if novel.novelImage %}
+                            <img src="{{novel.novelImage.url}}">
+                            {% endif %}
+                            <p>{{novel.title}}</p>
+                            </div>
+                            {%endfor%}
+                        </div>
+                        </div>
+                    
+                        <div class="tab-pane" id="tab3">
+
+                        </div>
                 </div>
             </div>
         </div>
