@@ -80,21 +80,14 @@ def book_content(request,book_id):
     book = get_object_or_404(Book, pk = book_id)
     return render(request, 'book_content.html',{'book':book})
 
-class TagCloudTV(TemplateView):
-    template_name = 'taggit/taggit_cloud.html'
+def get_queryset(self):
+    return Novel.objects.filter(tags__name=self.kwargs.get('tag'))
+    # Novel 뿐만이 아니라 Book도 받아오려면 여기를 손보면 될듯!
 
-class TaggedObjectLV(ListView):
-    template_name = 'taggit/taggit_post_list.html'
-    model = Novel
-
-    def get_queryset(self):
-        return Novel.objects.filter(tags__name=self.kwargs.get('tag'))
-        # Novel 뿐만이 아니라 Book도 받아오려면 여기를 손보면 될듯!
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['tagname'] = self.kwargs['tag']
-        return context
+def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    context['tagname'] = self.kwargs['tag']
+    return context
 
 def novel_category(request):
     category = request.GET.get('q')

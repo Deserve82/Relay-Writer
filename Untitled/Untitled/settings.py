@@ -39,8 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Books',
     'Users',
-    'taggit.apps.TaggitAppConfig',
-    'taggit_templatetags2',
     'octicons',
 ]
 

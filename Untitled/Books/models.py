@@ -4,24 +4,7 @@ import os
 from uuid import uuid4
 from django.utils import timezone
 import datetime
-from taggit.managers import TaggableManager
 
-def date_upload_to(instance, filename):
-  # upload_to="%Y/%m/%d" 처럼 날짜로 세분화
-  dir_path = instance.__class__.__name__
-  ymd_path = timezone.now().strftime('%Y/%m/%d') 
-  uuid_name = uuid4().hex
-  extension = os.path.splitext(filename)[-1].lower()
-  return '/'.join([
-    ymd_path,
-    uuid_name + extension,
-  ])
-
-# Create your models here.
-
-class Rate(models.Model):
-    pass
-    
 
 class Novel(models.Model):
     category = (
@@ -49,8 +32,9 @@ class Novel(models.Model):
     publisher = models.CharField(max_length=30)    # novel 출판사 -> 없을 수도 있음
     writingDate = models.DateField(default=datetime.date.today)                                         # novel 작성일
     novelImage = models.ImageField(upload_to="novel/")        # novel 표지
-    novelPrice = models.IntegerField(null = True,default=0)                  # novel 가격
+    novelPrice = models.IntegerField(null=True, default=0)                  # novel 가격
     novelContent = models.TextField()                                        # novel 내용
+
 
 class Tag(models.Model):
     novel = models.ForeignKey(Novel, on_delete=models.CASCADE, related_name='tags')
@@ -58,6 +42,7 @@ class Tag(models.Model):
     # 15자 제한 안된다 ㅠㅠㅠㅠ
     pub_date = models.DateTimeField(auto_now_add=True)
     # 날짜는 없는 게 더 간결해서 안쓴다
+
 
 class Book(models.Model):
     category = (
@@ -86,6 +71,5 @@ class Book(models.Model):
     editor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)          # 엮은이
     editDate = models.DateField()                                       # book 엮은 날짜
     bookImage = models.ImageField(upload_to="book/")                    # book 표지
-    bookPrice = models.IntegerField(null = True,default=0)              # book 가격
+    bookPrice = models.IntegerField(null=True, default=0)              # book 가격
     contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n
-    #tags = TaggableManager(blank=True)                                 # book 태그
