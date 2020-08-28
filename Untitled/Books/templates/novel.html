@@ -51,6 +51,9 @@
             <tr>
                 <td>novel price = {{novel.novelPrice}}₩</td>
             </tr>
+            <tr>
+                <td>{{likes}}명이 좋아합니다</td>
+            </tr>
         </table>
 
     </div>
@@ -80,8 +83,8 @@
 
     <!-- 하단 태그바에 3+4+5 -->
     <!-- 3 좋아요 -->
-    <!-- 4 바로읽기 -->
-    <!-- 5 엮기(내 Book에 넣기) -->
+
+
 
     <div class="container jumbotron">
         <div class="row">
@@ -92,10 +95,14 @@
                 </form>
             </div>
 
+
+    <!-- 4 바로읽기 -->
             <div class="col-md-4" style="text-align:center;">
                 <a href="{% url 'content' novel.id %}" ><button>바로 읽기</button></a>
             </div> 
 
+
+    <!-- 5 엮기(내 Book에 넣기) -->
             <!-- 단편집에 담기 어떻게 할지 고민 -->
             <div class="col-md-4" style="text-align:center;">
                 <a href="{% url 'content' novel.id %}"><button>단편집에 담기</button></a>

@@ -33,7 +33,8 @@ class Novel(models.Model):
     writingDate = models.DateField(default=datetime.date.today)                                         # novel 작성일
     novelImage = models.ImageField(upload_to="novel/")        # novel 표지
     novelPrice = models.IntegerField(null=True, default=0)                  # novel 가격
-    novelContent = models.TextField()     # novel 내용
+    novelContent = models.TextField()                                        # novel 내용
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'likers')
     novelCategory = models.CharField(max_length=50, choices=category, default='')    # novel 카테고리
 
 
