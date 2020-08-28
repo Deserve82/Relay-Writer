@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,21 +10,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+
+        body {
+            background-color: whitesmoke;
+        }
+
+        .padding{
+            padding-right: 20rem;
+            padding-left: 20rem;
+        }
+
+        @font-face {
+        font-family: 'NanumMyeongjo';
+        src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        }
+
+        .btn-outline-warning{
+            color: black;
+            border-radius: 2em;
+            border-width:3px;
+            height: 36px;
+            line-height: 5px;
+        }
+    
         #header {
             background-color: lightpink;
             height: 56px;
         }
-
+    
         #menu {
             background-color: mediumaquamarine;
             height: 50px;
         }
-
+    
         #main {
             /* background-color: lightskyblue; */
             margin-left: 1em;
-
-            
         }
 
         #footer {
@@ -33,9 +57,9 @@
 
         .rectangle {
             /* overflow: hidden;
-                display: flex;
-                align-items: center;
-                justify-content: center; */
+            display: flex;
+            align-items: center;
+            justify-content: center; */
             width: 140px;
             height: 180px;
             background: lightgray;
@@ -58,38 +82,63 @@
         .box:nth-of-type(n+7) {
             display: none;
         }
+
+        a {text-decoration: none;}
+
+        a:link{
+            color:black;
+        }
+
+        a:visited {
+            color:black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:olivedrab;
+        }
+
+        ::selection {
+            background-color: olivedrab;
+            color: whitesmoke;
+        }
     </style>
 </head>
 
 <body>
-    {% include "navbar.html"%}
+    <div style="position: relative;top:-220px">
+    <div>
+        <img src="{%static '배너.jpg'%}" class="padding" style="position: relative;">
+    </div>
+    
+   
 
     <!-- Book과 Novel의 목록을 선택할 수 있도록 하는 Navbar -->
     <div style="display: inline;">
-        <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%; float: left;">
+        <nav class="navbar navbar-light padding" style="width: 50%; float: left;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link mb-0 h5" href="{% url 'main' %}">Book <span class="sr-only">(current)</span></a>
+                <li class="nav-item active">
+                    <a class="nav-link mb-0 h5" href="{% url 'main' %}" style="color:rgb(88, 88, 88); position: relative;left:200px;font-family: NanumMyeongjo">소설집<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </nav>
-        <nav class="navbar navbar-light" style="background-color:#FFC007; width: 50%;">
+        <nav class="navbar navbar-light padding" style="width: 50%;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="text-align: center;">Novel</a>
+                <li class="nav-item">
+                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="color:rgb(88, 88, 88); position:relative;right:150px;font-family: NanumMyeongjo">단편 소설</a>
                 </li>
             </ul>
         </nav>
     </div>
 
     <!-- 목록을 보여주는 구간 -->
-    <div id="main">
+    <div id="main" class="padding">
         {% for category in categories%}
-        <div>
-            <div style="margin-top: 1em;" onclick="location.href='{% url 'novel_category' %}?q={{category}}' ">
-                <h2>
-                    <span>{{category}}</span>
-                    <span style="float: right; margin-right: 20%;">></span>
+        <div style="margin-top: 1em;" onclick="location.href='{% url 'book_category' %}?q={{category}}'">
+            <!-- 나중에 여기서 onclick 속성 부여 -->
+            <h2>
+                <span style="font-size:20px;font-family: NanumMyeongjo">{{category}}</span>
+                    <span style="float: right; margin-right: 20%; font-size:20px;position: relative;left:170px">></span>
                 </h2>
             </div>
             <div class="wrapper" style="max-width: 800px;">
@@ -100,7 +149,7 @@
                         <img class="novel_img" src="{{novel.novelImage.url}}" alt="" style="height: 100%; width: 100%; object-fit: contain;">
                     </div>
                     <div style="text-align: center; line-height: 0.2rem;">
-                        <h6 class="two-line">{{novel.title}}</h6>
+                        <h6 class="two-line" style="">{{novel.title}}</h6>
                         {{novel.author}}
                     </div>
                 </div>
@@ -116,6 +165,7 @@
     <!-- Footer 구간 -->
     <div id="footer">
 
+    </div>
     </div>
 </body>
 

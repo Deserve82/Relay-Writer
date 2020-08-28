@@ -1,10 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
+
+
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
   <style>
+    body {
+      background-color: whitesmoke;
+    }
+
+    .padding{
+      padding-right: 20rem;
+      padding-left: 20rem;
+    }
+
     @font-face {
       font-family: 'NanumMyeongjo';
       src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
@@ -14,8 +25,8 @@
   </style>
 </head>
 
-<body style="background-color: #003a3d;">
-
+<body>
+  <div style="position: relative;top:-220px">
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
     <div class="max-w-md w-full">
       <div>
@@ -65,6 +76,7 @@
 
       </form>
     </div>
+  </div>
   </div>
 </body>
 {% endblock %}
