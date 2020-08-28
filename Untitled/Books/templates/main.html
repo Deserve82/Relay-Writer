@@ -77,8 +77,8 @@
         </div>
         <div style="text-align: right;">
             <button type="button" class="btn btn-warning mr-sm-2"
-                style="width: 120px; text-align: right; border-radius: 2em;">My
-                Page
+                style="width: 120px; text-align: right; border-radius: 2em;" ><a class="navbar-brand mb-0 h3" href ="{% url 'profile' %}">My
+                    Page</a>
             </button> <!-- 추후 남는 공간에 사람모양 아이콘 추가-->
             <div> 
                 {% if user.is_authenticated %} 

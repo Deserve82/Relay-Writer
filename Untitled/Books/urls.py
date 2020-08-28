@@ -5,5 +5,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('new/', views.new, name = 'new'),
-    path('update_novel/', views.update_novel, name = "update_novel"),
+    path('update/<int:novel_id>', views.update, name = 'novel_update'),
+    path('profile/', views.profile, name = 'profile'),
+    
 ]
