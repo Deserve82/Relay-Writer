@@ -144,8 +144,6 @@ def profile(request):
     novels = Novel.objects.filter(owners__id = user.id)
     written_novel = Novel.objects.filter(author=user)
     like = Novel.objects.filter(like__id=user.id)
-    print(written_novel)
-    print(profile)
     return render(request, 'profile.html', {'user': user, 'novels':novels, 'written_novel':written_novel, 'like':like})
 
 
@@ -167,11 +165,12 @@ def buy_novel(request, novel_id):
     else:
         return HttpResponse('로그인 해주세요.')
 
+
 def search_novel(request):
     w = request.GET.get('w') or ""
-    
+
     search_result = Novel.objects.filter(
-            Q(title__icontains=w)
-        ).distinct() # 중복사항 제거
+        Q(title__icontains=w)
+    ).distinct()  # 중복사항 제거
 
     return render(request, 'search.html', {"w": w, "search_result":search_result})
