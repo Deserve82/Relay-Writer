@@ -1,12 +1,12 @@
 from django import forms
+
 from .models import Novel
-import datetime
+
 
 class WriteForm(forms.ModelForm):
     class Meta:
         model = Novel
-        fields = ['title', 'author', 'publisher', 'novelContent',  'novelImage', 'novelPrice', 'novelCategory']
-
+        fields = ['title', 'author', 'publisher', 'novelContent', 'novelImage', 'novelPrice', 'novelCategory']
 
 # class Category(forms.ModelForm):
 #     option = (

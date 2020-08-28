@@ -1,12 +1,13 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from .models import CustomUserModel
-from .forms import SigninForm, UserForm
-from django.contrib.auth import login, authenticate, logout
-
-
-#from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
 from django.contrib.auth import login, authenticate
+from django.contrib.auth import logout
 from django.http import HttpResponse
+from django.shortcuts import render, redirect
+
+from .forms import SigninForm, UserForm
+from .models import CustomUserModel
+
+
 # Create your views here.
 
 def signin(request):
@@ -26,9 +27,11 @@ def signin(request):
         signin_form = SigninForm
         return render(request, 'signin.html', {'signin_form': signin_form})
 
+
 def logout_view(request):
     logout(request)
     return redirect('signin')
+
 
 def signup(request):
     if request.method == "POST":

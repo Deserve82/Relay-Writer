@@ -1,9 +1,7 @@
-from django.db import models
-from django.conf import settings
-import os
-from uuid import uuid4
-from django.utils import timezone
 import datetime
+
+from django.conf import settings
+from django.db import models
 
 
 class Novel(models.Model):
@@ -27,15 +25,16 @@ class Novel(models.Model):
         ("만화", "만화"),
         ("애니메이션", "애니메이션"),
     )
-    title = models.CharField(max_length=30)        # novel 제목 # max_length=30으로 변경
-    author = models.CharField(max_length=30)       # novel 저자 -> book은 엮은 이가 무조건 User기 때문에 문제가 없늗데, novel은 저자가 User가 아닌 고전 작가일수도, User일수도 있지 않나? 그럼 우카징ㅠ
-    publisher = models.CharField(max_length=30)    # novel 출판사 -> 없을 수도 있음
-    writingDate = models.DateField(default=datetime.date.today)                                         # novel 작성일
-    novelImage = models.ImageField(upload_to="novel/")        # novel 표지
-    novelPrice = models.IntegerField(null=True, default=0)                  # novel 가격
-    novelContent = models.TextField()                                        # novel 내용
-    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name = 'likers')
-    novelCategory = models.CharField(max_length=50, choices=category, default='')    # novel 카테고리
+    title = models.CharField(max_length=30)  # novel 제목 # max_length=30으로 변경
+    author = models.CharField(
+        max_length=30)  # novel 저자 -> book은 엮은 이가 무조건 User기 때문에 문제가 없늗데, novel은 저자가 User가 아닌 고전 작가일수도, User일수도 있지 않나? 그럼 우카징ㅠ
+    publisher = models.CharField(max_length=30)  # novel 출판사 -> 없을 수도 있음
+    writingDate = models.DateField(default=datetime.date.today)  # novel 작성일
+    novelImage = models.ImageField(upload_to="novel/")  # novel 표지
+    novelPrice = models.IntegerField(null=True, default=0)  # novel 가격
+    novelContent = models.TextField()  # novel 내용
+    like = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='likers')
+    novelCategory = models.CharField(max_length=50, choices=category, default='')  # novel 카테고리
 
 
 class Tag(models.Model):
@@ -66,12 +65,12 @@ class Book(models.Model):
         ("로맨스", "로맨스"),
         ("만화", "만화"),
         ("애니메이션", "애니메이션"),
-    ) # category 페이지의 url을 위해서 "어린이/청소년" -> "어린이와청소년"으로 변경했다.
-      # 인자를 넘겨줄 때, regex로 "/"를 "_"로 변경할 수는 없을까? import re 해서 .replace("/", "_") 하면 되긴 하는데 어떻게 적용해야 하는지 모르겠다ㅠㅠ
-    title = models.CharField(max_length=150)                            # book 제목
-    bookCategory = models.CharField(max_length = 50, choices=category, default = '')    # book 카테고리
-    editor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)          # 엮은이
-    editDate = models.DateField()                                       # book 엮은 날짜
-    bookImage = models.ImageField(upload_to="book/")                    # book 표지
-    bookPrice = models.IntegerField(null=True, default=0)              # book 가격
-    contents = models.ManyToManyField(Novel)                            # book의 구성 내용 : book - novel을 이어주는 m:n
+    )  # category 페이지의 url을 위해서 "어린이/청소년" -> "어린이와청소년"으로 변경했다.
+    # 인자를 넘겨줄 때, regex로 "/"를 "_"로 변경할 수는 없을까? import re 해서 .replace("/", "_") 하면 되긴 하는데 어떻게 적용해야 하는지 모르겠다ㅠㅠ
+    title = models.CharField(max_length=150)  # book 제목
+    bookCategory = models.CharField(max_length=50, choices=category, default='')  # book 카테고리
+    editor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)  # 엮은이
+    editDate = models.DateField()  # book 엮은 날짜
+    bookImage = models.ImageField(upload_to="book/")  # book 표지
+    bookPrice = models.IntegerField(null=True, default=0)  # book 가격
+    contents = models.ManyToManyField(Novel)  # book의 구성 내용 : book - novel을 이어주는 m:n
