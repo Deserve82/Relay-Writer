@@ -135,4 +135,8 @@ def book_category(request):
 
 def profile(request):
     username = request.GET.get('username')
-    return render(request, 'profile.html', {'username': username})
+    if username == None or username == "":
+        username = request.user.username
+    novels = Novel.objects.all()
+    result = []
+    return render(request, 'profile.html', {'result' : result, 'username': username})
