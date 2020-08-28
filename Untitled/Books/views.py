@@ -28,6 +28,14 @@ def novel_list(request):
     
     return render(request, 'novel_list.html', {'novels':novels, 'categories':categories})
 
+# like 추가
+def like(request, novel_id):
+    novel = get_object_or_404(Novel, pk = novel_id)
+    novel.like.add(request.user)
+    novel.save()
+
+    return redirect('/novel/'+str(novel_id))
+
 def new(request):
     if request.method == "POST":
         form = WriteForm(request.POST, request.FILES)
@@ -53,9 +61,8 @@ def novel(request,novel_id):
     novel = get_object_or_404(Novel, pk = novel_id)    # class이름, pk=primal key -> DB에 있는 id  # 안되면 404페이지 띄워주세요
     tags = Tag.objects.filter(novel=novel)
 
-    print(novel)
-    # like_num = len(novel.like.all())
-    return render(request, 'novel.html',{'novel':novel,'tags':tags}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
+    like_num = len(novel.like.all())
+    return render(request, 'novel.html',{'novel':novel,'tags':tags, 'likes':like_num}) # 객체를 novel에 저장해주세요 -> novel을 detail.html에 보내주세요
 
 def tagging(request, novel_id):
     new_tag = Tag()
