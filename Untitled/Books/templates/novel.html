@@ -18,6 +18,26 @@
         .middle {
             text-align:center;
         }
+
+        a {text-decoration: none;}
+
+        a:link{
+            color:black;
+        }
+
+        a:visited {
+            color:black;
+            text-decoration: none;
+        }
+
+        a:hover {
+            color:olivedrab;
+        }
+
+        ::selection {
+            background-color: olivedrab;
+            color: whitesmoke;
+        }
     </style>
 </head>
 
@@ -27,7 +47,7 @@
     <div>
         <table width="100%" height="300" align="center">
             <tr>
-                <td rowspan="6" style="text-align: center;">
+                <td rowspan="8" style="text-align: center;">
                     {% if novel.novelImage %}
                     <img src="{{novel.novelImage.url}}">
                     {% endif %}
@@ -52,7 +72,10 @@
                 <td>novel price = {{novel.novelPrice}}₩</td>
             </tr>
             <tr>
-                <td>{{likes}}명이 좋아합니다</td>
+                <td>카테고리 : {{novel.novelCategory}}</td>
+            </tr>
+            <tr>
+                <td>{{likes}}명이 좋아하는 책입니다</td>
             </tr>
         </table>
 
@@ -72,16 +95,26 @@
                 </form>
         </div>
         <div class="col-md-5">
+            
+
+
             {% for tag in tags %}
             <button style="border-radius: 20px;">
                 # {{tag.body}} 
             </button>
             {% endfor %}
+
+            <!-- {% if tag.body %} -->
+            <!-- {% else %} -->
+                <!-- <p style="text-align:center; margin-top:30px;">tag가 아직 없습니다</p> -->
+            <!-- {% endif %} -->
+
         </div>
     </div>
     <hr>
 
-    <!-- 하단 태그바에 3+4+5 -->
+
+    <!-- 하단 바에 3+4+5 -->
     <!-- 3 좋아요 -->
 
 
