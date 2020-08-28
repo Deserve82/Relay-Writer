@@ -61,7 +61,7 @@
             text-overflow: ellipsis;
         }
 
-        .box:nth-of-type(n+7) {
+        .box:nth-of-type(n+4) {
             display: none;
         }
     </style>
@@ -100,7 +100,7 @@
         <div class="wrapper" style="max-width: 800px;">
             {% for book in books %}
             {% if book.bookCategory == category %}
-            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+            <div class="box" style="width: 208px; height :260px; float: left;">
                 <div class="rectangle" onclick="location.href='{% url 'book' book.id %}' ">
                     {% if book.bookImage %}
                     <img class="book_img" src="{{book.bookImage.url}}" alt=""
@@ -113,6 +113,12 @@
                 </div>
             </div>
             {%endif%}
+            {%endfor%}
+            {%for i in "x"|rjust:"6"%}
+            <!-- 객체가 6개보다 적으면 빈 박스를 만들어서 이쁘게 만드는 기능 -->
+            <div class="box" style="width: 208px; height :260px; float: left;">
+                <div class="rectangle" style="cursor: unset;"></div>
+            </div>
             {%endfor%}
         </div>
         <div style="clear: both; height: 0; overflow: hidden;"></div>
