@@ -42,20 +42,22 @@ def new(request):
         if form.is_valid():
             novel = form.save(commit = False)
             novel.save()
-            return redirect('')
+            return redirect('main')
+        else:
+            return HttpResponse('novel is not valid')
     else:
         form = WriteForm()
         return render(request, 'new.html', {'form' : form})
 
-def update_novel(request, novel_id):
-    update_novel = get_object_or_404(Novel, id = novel_id)
+def update(request, novel_id):
+    update_novel = get_object_or_404(Novel, pk = novel_id)
     update_novel.title = request.POST['title']
+    update_novel.novelImage = request.FILES['novelImage']
     update_novel.writingDate = request.POST['writingDate']
     update_novel.novelPrice = request.POST['novelPrice']
     update_novel.novelContent = request.POST['novelContent']
     update_novel.save()
-    return redirect('/books/'+str(update_novel.id))
-    
+    return redirect('/novel/'+str(update_novel.id))
 
 def novel(request,novel_id):
     novel = get_object_or_404(Novel, pk = novel_id)    # class이름, pk=primal key -> DB에 있는 id  # 안되면 404페이지 띄워주세요
@@ -115,3 +117,7 @@ def book_category(request):
             sieved_books.append(book)
 
     return render(request, 'book_category.html', {'category': category, 'sieved_books':sieved_books})
+
+def profile(request):
+    username = request.GET.get('username')
+    return render(request, 'profile.html', {'username':username})
