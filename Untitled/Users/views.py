@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import CustomUserModel
 from .forms import SigninForm, UserForm
+from django.contrib.auth import login, authenticate, logout
 
 
 #from django.contrib.auth.models import User
@@ -34,10 +35,10 @@ def signup(request):
         form = UserForm(request.POST)
         if form.is_valid():
             new_user = CustomUserModel.objects.create_user(username=form.cleaned_data['username'],
-                                                      email=form.cleaned_data['email'],
-                                                      password=form.cleaned_data['password'],
-                                                      nickname=form.cleaned_data['nickname'],
-                                                      phone_number=form.cleaned_data['phone_number'])
+                                                           email=form.cleaned_data['email'],
+                                                           password=form.cleaned_data['password'],
+                                                           nickname=form.cleaned_data['nickname'],
+                                                           phone_number=form.cleaned_data['phone_number'])
             login(request, new_user)
             return redirect('signin')
     else:
