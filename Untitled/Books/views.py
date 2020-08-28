@@ -135,12 +135,16 @@ def book_category(request):
 
 
 def profile(request):
-    username = request.GET.get('username')
-    if username == None or username == "":
-        username = request.user.username
-    novels = Novel.objects.all()
+    user = request.user
+    novels = Novel.objects.filter(owners__id=user.id)
+    write = Novel.objects.all()
     result = []
-    return render(request, 'profile.html', {'result' : result, 'username': username})
+    for novel in write:
+        if novel.author == user.username:
+            result.append(novel)
+    
+    print(profile)
+    return render(request, 'profile.html', {'result':result,'user': user, 'novels':novels})
 
 
 def buy_novel(request, novel_id):
