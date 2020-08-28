@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
 from .form import WriteForm
@@ -136,3 +137,22 @@ def book_category(request):
 def profile(request):
     username = request.GET.get('username')
     return render(request, 'profile.html', {'username': username})
+
+
+def buy_novel(request, novel_id):
+    novel = get_object_or_404(Novel, pk=novel_id)
+    user = request.user
+    if user.is_authenticated:
+        if novel.novelPrice > user.point:
+            return HttpResponse('보유 포인트가 적습니다.')
+        else:
+            user.point -= novel.novelPrice
+            novel.owners.add(user)
+            author = novel.author
+            author.point += novel.novelPrice
+            author.save()
+            user.save()
+            novel.save()
+            return redirect('main')
+    else:
+        return HttpResponse('로그인 해주세요.')
