@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 
-from .form import WriteForm
+from .form import WriteForm, CompileForm
 from .models import *
 from django.db.models import Q
 
@@ -47,12 +47,27 @@ def new(request):
         if form.is_valid():
             novel = form.save(commit=False)
             novel.save()
-            return redirect('main')
+            return redirect('novel_list')
         else:
             return HttpResponse('novel is not valid')
     else:
         form = WriteForm()
         return render(request, 'new.html', {'form': form})
+
+
+def compile_book(request):
+    if request.method == "POST":
+        form = CompileForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.save()
+            return redirect('main')
+        else:
+            return HttpResponse('book is not valid')
+    else:
+        form = CompileForm()
+        return render(request, 'compile_book.html', {'form': form})
+
 
 
 def update(request, novel_id):
