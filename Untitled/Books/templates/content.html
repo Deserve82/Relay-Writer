@@ -46,6 +46,15 @@
             background-color: olivedrab;
             border-color: olivedrab;
         }
+
+        .rectangle {
+            width: 140px;
+            height: 180px;
+            background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -70,10 +79,15 @@
                     <div id="list-item-1" style="text-align: center;height:100%;">
                         <table width="700" height="300" align="center" style="position: relative;top:110px">
                             <tr>
-                                <td rowspan="6" style="width: 18rem; height: fit-content;">
-                                    {% if novel.novelImage %}
-                                    <img src="{{novel.novelImage.url}}" style="width: 100%;">
-                                    {% endif %}
+                                <td rowspan="6" style="height: fit-content;">
+                                    <div class="box" style="width: fit-content; height :fit-content; float: left; position: relative; top: -1em; right: -10em;">
+                                        <div class="rectangle">
+                                            {% if novel.novelImage %}
+                                            <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
+                                                style="height: 100%; width: 100%; object-fit: contain;">
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>
                                     <h3>{{novel.title}}</h3>

@@ -167,7 +167,7 @@ def buy_novel(request, novel_id):
 
 
 def search_novel(request):
-    w = request.GET.get('w') or ""
+    w = request.GET.get('w')
 
     search_result = Novel.objects.filter(
         Q(title__icontains=w)
@@ -176,7 +176,7 @@ def search_novel(request):
     return render(request, 'search_novel.html', {"w": w, "search_result":search_result})
 
 def search_book(request):
-    w = request.GET.get('w') or ""
+    w = request.GET.get('w')
 
     search_result = Book.objects.filter(
         Q(title__icontains=w)

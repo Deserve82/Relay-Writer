@@ -1,92 +1,91 @@
 {% extends 'base.html' %}
 {% block content %}
+
 <head>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <style>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@0.7.4/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <style>
     body {
       background-color: whitesmoke;
     }
 
-    .padding{
+    .padding {
       padding-right: 20rem;
       padding-left: 20rem;
     }
-    
-      @font-face {
-        font-family: 'NanumMyeongjo';
-        src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
-        font-weight: normal;
-        font-style: normal;
-      }
-    </style>
-  </head>
-  <div style="position: relative;top:-220px">
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-    <div class="max-w-md w-full">
-      <div>
-        <h2 class="mt-6 text-center text-3xl leading-9 font-extrabold "
-          style="font-family: NanumMyeongjo; color: #003a3d;">
-          회원가입
-        </h2>
-  
-        </p>
-      </div>
-  
-      <form class="mt-8" method="POST">
-        {% csrf_token %}
-        <div class="-mt-px">
-          <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-            <input id="username" type="text" class="form-control" name="username" placeholder="유저네임을 입력하세요">
-          </div>
-          <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-            <input id="email" type="text" class="form-control" name="email" placeholder="이메일을 입력하세요">
-          </div>
-          <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-            <input id="password" type="password" class="form-control" name="password" placeholder="패스워드를 입력하세요">
-          </div>
-          <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-            <input id="nickname" type="text" class="form-control" name="nickname" placeholder="닉네임을 입력하세요">
-          </div>
-          <div class="input-group" style="margin-bottom: 5px;">
-            <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-            <input id="phone_number" type="text" class="form-control" name="phone_number" placeholder="휴대폰 번호를 입력하세요">
-          </div>
-        </div>
-  
-        <div class="mt-6 flex items-center justify-between">
-          <div class="flex items-center">
-            <input id="remember_me" type="checkbox"
-              class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
-            <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
-              저장하기
-            </label>
-          </div>
-  
-  
-        </div>
-  
-        <div class="mt-6">
-          <button type="submit"
-            class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
-            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
-              <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150"
-                fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd"
-                  d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                  clip-rule="evenodd" />
-              </svg>
-            </span>
-            회원가입
-          </button>
-        </div>
-      </form>
+
+    @font-face {
+      font-family: 'NanumMyeongjo';
+      src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
+</head>
+<div style="position: relative; top:-5em; right: -38%;">
+  <div class="max-w-md w-full">
+    <div>
+      <h2 class="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900 "
+        style="font-family: NanumMyeongjo; color: #003a3d;">
+        회원가입
+      </h2>
+
+      </p>
     </div>
+
+    <form class="mt-8" method="POST">
+      {% csrf_token %}
+      <div class="-mt-px">
+        <div class="input-group" style="margin-bottom: 5px;">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+          <input id="username" type="text" class="form-control" name="username" placeholder="유저네임을 입력하세요">
+        </div>
+        <div class="input-group" style="margin-bottom: 5px;">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+          <input id="email" type="text" class="form-control" name="email" placeholder="이메일을 입력하세요">
+        </div>
+        <div class="input-group" style="margin-bottom: 5px;">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+          <input id="password" type="password" class="form-control" name="password" placeholder="패스워드를 입력하세요">
+        </div>
+        <div class="input-group" style="margin-bottom: 5px;">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+          <input id="nickname" type="text" class="form-control" name="nickname" placeholder="닉네임을 입력하세요">
+        </div>
+        <div class="input-group" style="margin-bottom: 5px;">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+          <input id="phone_number" type="text" class="form-control" name="phone_number" placeholder="휴대폰 번호를 입력하세요">
+        </div>
+      </div>
+
+      <div class="mt-6 flex items-center justify-between">
+        <div class="flex items-center">
+          <input id="remember_me" type="checkbox"
+            class="form-checkbox h-4 w-4 text-indigo-600 transition duration-150 ease-in-out">
+          <label for="remember_me" class="ml-2 block text-sm leading-5 text-gray-900">
+            저장하기
+          </label>
+        </div>
+
+
+      </div>
+
+      <div class="mt-6">
+        <button type="submit"
+          class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm leading-5 font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700 transition duration-150 ease-in-out">
+          <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+            <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400 transition ease-in-out duration-150"
+              fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd"
+                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                clip-rule="evenodd" />
+            </svg>
+          </span>
+          회원가입
+        </button>
+      </div>
+    </form>
   </div>
-  </div>
-  {% endblock %}
+</div>
+{% endblock %}

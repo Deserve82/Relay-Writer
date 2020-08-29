@@ -7,17 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>profile</title>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(".btn-pref .btn").click(function () {
-                $(".btn-pref .btn").removeClass("btn-primary").addClass("btn-default");
-                $(this).removeClass("btn-default").addClass("btn-primary");
-            });
-        });
-    </script>
     <style>
         body {
             background-color: whitesmoke;
@@ -28,206 +17,6 @@
             padding-left: 20rem;
         }
 
-        .card {
-            margin-top: 20px;
-            padding: 30px;
-            background-color: rgba(214, 224, 226, 0.2);
-            -webkit-border-top-left-radius: 5px;
-            -moz-border-top-left-radius: 5px;
-            border-top-left-radius: 5px;
-            -webkit-border-top-right-radius: 5px;
-            -moz-border-top-right-radius: 5px;
-            border-top-right-radius: 5px;
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .card.hovercard {
-            position: relative;
-            padding-top: 0;
-            overflow: hidden;
-            text-align: center;
-            background-color: #fff;
-            background-color: rgba(255, 255, 255, 1);
-        }
-
-        .card.hovercard .card-background {
-            height: 130px;
-        }
-
-        .card-background img {
-            -webkit-filter: blur(25px);
-            -moz-filter: blur(25px);
-            -o-filter: blur(25px);
-            -ms-filter: blur(25px);
-            filter: blur(25px);
-            margin-left: -100px;
-            margin-top: -200px;
-            min-width: 130%;
-        }
-
-        .card.hovercard .useravatar {
-            position: absolute;
-            top: 15px;
-            left: 0;
-            right: 0;
-        }
-
-        .card.hovercard .useravatar img {
-            width: 100px;
-            height: 100px;
-            max-width: 100px;
-            max-height: 100px;
-            -webkit-border-radius: 50%;
-            -moz-border-radius: 50%;
-            border-radius: 50%;
-            border: 5px solid rgba(255, 255, 255, 0.5);
-        }
-
-        .card.hovercard .card-info {
-            position: absolute;
-            bottom: 14px;
-            left: 0;
-            right: 0;
-        }
-
-        .card.hovercard .card-info .card-title {
-            padding: 0 5px;
-            font-size: 20px;
-            line-height: 1;
-            color: #262626;
-            background-color: rgba(255, 255, 255, 0.1);
-            -webkit-border-radius: 4px;
-            -moz-border-radius: 4px;
-            border-radius: 4px;
-        }
-
-        .card.hovercard .card-info {
-            overflow: hidden;
-            font-size: 12px;
-            line-height: 20px;
-            color: #737373;
-            text-overflow: ellipsis;
-        }
-
-        .card.hovercard .bottom {
-            padding: 0 20px;
-            margin-bottom: 17px;
-        }
-
-        .btn-pref .btn {
-            -webkit-border-radius: 0 !important;
-        }
-
-        .twPc-div {
-            background: #fff none repeat scroll 0 0;
-            border: 1px solid #e1e8ed;
-            border-radius: 6px;
-            height: 200px;
-            max-width: 340px; // orginal twitter width: 290px;
-        }
-
-        .twPc-bg {
-            background-image: url("https://pbs.twimg.com/profile_banners/50988711/1384539792/600x200");
-            background-position: 0 50%;
-            background-size: 100% auto;
-            border-bottom: 1px solid #e1e8ed;
-            border-radius: 4px 4px 0 0;
-            height: 95px;
-            width: 100%;
-        }
-
-        .twPc-block {
-            display: block !important;
-        }
-
-        .twPc-button {
-            margin: -35px -10px 0;
-            text-align: right;
-            width: 100%;
-        }
-
-        .twPc-avatarLink {
-            background-color: #fff;
-            border-radius: 6px;
-            display: inline-block !important;
-            float: left;
-            margin: -30px 5px 0 8px;
-            max-width: 100%;
-            padding: 1px;
-            vertical-align: bottom;
-        }
-
-        .twPc-avatarImg {
-            border: 2px solid #fff;
-            border-radius: 7px;
-            box-sizing: border-box;
-            color: #fff;
-            height: 72px;
-            width: 72px;
-        }
-
-        .twPc-divUser {
-            margin: 5px 0 0;
-        }
-
-        .twPc-divName {
-            font-size: 18px;
-            font-weight: 700;
-            line-height: 21px;
-        }
-
-        .twPc-divName a {
-            color: inherit !important;
-        }
-
-        .twPc-divStats {
-            margin-left: 11px;
-            padding: 10px 0;
-        }
-
-        .twPc-Arrange {
-            box-sizing: border-box;
-            display: table;
-            margin: 0;
-            min-width: 100%;
-            padding: 0;
-            table-layout: auto;
-        }
-
-        ul.twPc-Arrange {
-            list-style: outside none none;
-            margin: 0;
-            padding: 0;
-        }
-
-        .twPc-ArrangeSizeFit {
-            display: table-cell;
-            padding: 0;
-            vertical-align: top;
-        }
-
-        .twPc-ArrangeSizeFit a:hover {
-            text-decoration: none;
-        }
-
-        .twPc-StatValue {
-            display: block;
-            font-size: 18px;
-            font-weight: 500;
-            transition: color 0.15s ease-in-out 0s;
-        }
-
-        .twPc-StatLabel {
-            color: #8899a6;
-            font-size: 10px;
-            letter-spacing: 0.02em;
-            overflow: hidden;
-            text-transform: uppercase;
-            transition: color 0.15s ease-in-out 0s;
-        }
-
         .rectangle {
             width: 140px;
             height: 180px;
@@ -236,56 +25,54 @@
             display: inline-block;
             cursor: pointer;
         }
+
+        .nav-item{
+            margin: 0 2em 0 2em;
+        }
     </style>
 </head>
 
-<body></body>
+<body>
+    <div class="padding" style="position: relative; top: -13em; right: -7%;">
+
+        <div class="card" style="position: relative; width: 50em; height: 16em; background-color: olivedrab;">
+            <div class="card-body">
+                <span>포인트 : {{user.point}}</span>
+                <center><img alt=""
+                        src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png"
+                        width="100">
+                    <div class="card-info"> <span class="card-title">
+                            <h3 style="color: whitesmoke; position: relative; top: 0em;">
+                                <strong>{{user.username}}님, 환영합니다.</strong></h3>
+                        </span></div>
+                </center>
 
 
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <div class="panel" style="position: relative; top: -12em; background-color: whitesmoke; border: 1px solid rgba(174, 174, 174, 0.714);">
-                <div class="panel-heading" style="background-color: olivedrab;">
-                    <div class="useravatar">
-                        <br>
-                        <br>
-                        <br>
-                        <center><img alt=""
-                                src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png"
-                                width="100">
-                            <div class="card-info"> <span class="card-title"><h3 style="color: whitesmoke; position: relative; top: -0.7em;"><strong>{{user.username}}</strong></h3></span></div>
-                        </center>
-                        <br>
-                        <br>
-                        <br>
-
-                    </div>
-                    <span class="pull-right">
-                        <!-- Tabs -->
-                        <br>
-                        <br>
-                        <!-- ############ 버튼으로 이동이 되면 밑의 <ul> <li>*3 </ul> 은 삭제 ################ -->
-                        <div class="nav panel-tabs" data-toggle="button">
-                            <button type="button" onclick="href='#tab1'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 작성한 도서</button>
-                            <button type="button" onclick="location.href='#tab2'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 구매한 도서</button>
-                            <button type="button" onclick="location.href='#tab3'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 좋아한 도서</button>
+                    <ul class="nav justify-content-center" style="margin-top: 1em;">
+                        <div>
+                            <li class="nav-item">
+                                <a class="list-group-item list-group-item-action" href="#tab1" data-toggle="tab">내가 작성한 도서</a>
+                            </li>
                         </div>
+                        <div>
+                            <li class="nav-item">
+                                <a class="list-group-item list-group-item-action" href="#tab2" data-toggle="tab">내가 구매한 도서</a>
+                            </li>
+                        </div>
+                        <div>
+                            <li class="nav-item">
+                                <a class="list-group-item list-group-item-action" href="#tab3" data-toggle="tab">내가 좋아한 도서</a>
+                            </li>
+                        </div>
+                    </ul>
 
-                        <ul class="nav panel-tabs" style="margin-right: 7.5em;">
-                            <li class="active"><a href="#tab1" data-toggle="tab">내가 작성한 도서</a></li>
-                            <li><a href="#tab2" data-toggle="tab">도서 모음집</a></li>
-                            <li><a href="#tab3" data-toggle="tab">좋아요</a></li>
-                        </ul>
-                        <!-- ############################ -->
-                    </span>
-                </div>
-                <br>
-                <br>
-                <br>
-                <br>
-                <br>
+            </div>
+        </div>
+
+        <!-- ######################################################################################################## -->
+
+        <div class="card text-center" style="width: 50em; height: fit-content; background-color: whitesmoke; border: 2px solid rgb(167, 167, 167);">
+            <div class="card-body">
                 <div class="panel-body">
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab1" style="margin-left: 5.5em;">
@@ -331,10 +118,8 @@
             </div>
         </div>
     </div>
-</div>
 
-
-
+    <!-- ######################################################################################################## -->
 </body>
 
 </html>

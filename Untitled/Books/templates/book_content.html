@@ -22,18 +22,30 @@
             border-top-width: 50px;
             /* 이거 안된다 세로 가운데 정렬 하고싶다 */
         }
+
+        .rectangle {
+            width: 140px;
+            height: 180px;
+            background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
     </style>
 </head>
 
 <body>
     <div style="position: relative;top:-220px">
-        <a href="{% url 'book' book.id%}" style="font-family:Georgia;position: relative;left:40px"> ⇦ Book Detail</a>
+        <a href="{% url 'main' %}" style="font-family:Georgia;position: relative;left:40px"> ⇦ Book Detail</a>
         <div class="row padding" style="margin:0px;">
             <div class="col-md-2">
                 <div id="list-example" class="list-group">
-                    <a class="list-group-item list-group-item-action" href="#list-item-1">{{book.title}}</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-2">{{book.editor}}</a>
-                    <a class="list-group-item list-group-item-action" href="#list-item-3">Content</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-11">{{book.title}}</a>
+                    <a class="list-group-item list-group-item-action" href="#list-item-22">{{book.editor}}</a>
+                    {% for list in book.contents.all %}
+                    <a class="list-group-item list-group-item-action" href="#list-item-{{forloop.counter}}">{{list.title}}</a>
+                    {%endfor%}
+                    
                     <!-- Content를 novel title로 고치고 싶다... 근데 book마다 novel 수가 다른데 이걸 어케 하징
                     쪼끔 이따가 다시 고민해보는 걸로 -->
                 </div>
@@ -42,13 +54,18 @@
             <div class="col-md-9">
                 <div data-spy="scroll" data-target="#list-example" data-offset="0" class="scrollspy-example"
                     style="height: 600px;overflow: auto;">
-                    <div id="list-item-1" style="text-align: center;height:100%;">
+                    <div id="list-item-11" style="text-align: center;height:100%;">
                         <table width="700" height="300" align="center">
                             <tr>
-                                <td rowspan="6" style="width: 18rem; height: fit-content;">
-                                    {% if book.bookImage %}
-                                    <img src="{{book.bookImage.url}}" style="width: 100%;">
-                                    {% endif %}
+                                <td class="test" rowspan="6" style="width: 150px; height: fit-content;">
+                                    <div class="box" style="width: 150px; height :fit-content; float: left; position: relative; top: -1em; right: -10em;">
+                                        <div class="rectangle">
+                                            {%if book.bookImage %}
+                                            <img class="book_img" src="{{book.bookImage.url}}" alt=""
+                                                style="height: 100%; width: 100%; object-fit: contain;">
+                                            {% endif %}
+                                        </div>
+                                    </div>
                                 </td>
                                 <td>
                                     <h3>{{book.title}}</h3>
@@ -60,8 +77,8 @@
                         </table>
                     </div>
                     <hr>
-                    <h4 id="list-item-3">Content</h4>
                     {% for list in book.contents.all %}
+                    <h4 id="list-item-{{forloop.counter}}">{{list.title}}</h4>
                     <h5>{{list.title}}</h5>
                     <p>{{list.novelContent|linebreaksbr}}</p>
                     <br>
