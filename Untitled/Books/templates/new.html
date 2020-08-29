@@ -2,26 +2,99 @@
 
 {% block content %}
 <style>
-        body {
-            background-color: whitesmoke;
-        }
+    body {
+        background-color: whitesmoke;
+    }
 
-        .padding{
-            padding-right: 20rem;
-            padding-left: 20rem;
-        }
+    .padding {
+        padding-right: 10rem;
+        padding-left: 10rem;
+    }
+
+    @font-face {
+        font-family: 'NanumMyeongjo';
+        src: url('https://pub-1.scdn.pw/fonts/NanumFont/woff/NanumMyeongjo.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    }
 </style>
 
 <br>
-<div class = "container">
-    <form method = "POST" action ="{% url 'new'%}" enctype="multipart/form-data">
+<div class="container padding">
+    <form method="POST" action="{% url 'new'%}" enctype="multipart/form-data">
         {%csrf_token%}
-        <div style = "text-align: left;">
-            <table>
-                {{form.as_table}}
-            </table>
-                <input class = "btn btn-dark" type = "submit" value="글쓰기">
-        </div>
+        <div style="position: relative;top:-220px">
+            <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md w-full">
+                    <div>
+                        <h2 class="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900"
+                            style="font-family: NanumMyeongjo; color: #003a3d;">
+                            집필하기
+                        </h2>
+                    </div>
+                    <br>
+                    <form class="mt-8" method="POST">
+                        {% csrf_token %}
+                        <div class="-mt-px">
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"
+                                        aria-hidden="true"></span></span>
+                                <input id="title" type="text" class="form-control form-control-lg" name="title"
+                                    placeholder="제목">
+                            </div>
+                            <form>
+                                <div class="form-row">
+                                    <div class="input-group col" style="margin-bottom: 5px;">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                                aria-hidden="true"></span></span>
+                                        <!-- <input id="author" type="text" class="form-control" name="author"
+                                            placeholder="__________⠀⠀작가"> -->
+                                            {{form.author}}
+                                    </div>
+
+                                    <div class="input-group col" style="margin-bottom: 5px;">
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                                aria-hidden="true"></span></span>
+                                        <input id="publisher" type="text" class="form-control" name="publisher"
+                                            placeholder="__________⠀⠀출판사">
+                                    </div>
+                                </div>
+                            </form>
+
+
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                        aria-hidden="true"></span></span>
+                                <textarea id="novelContent" type="text" class="form-control" name="novelContent"
+                                    placeholder="————⠀⠀글" rows="7"></textarea>
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                        aria-hidden="true"></span></span>
+                                <input id="novelImage" type="file" name="novelImage">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
+                                        aria-hidden="true"></span></span>
+                                <input id="novelPrice" type="integral" class="form-control" name="novelPrice"
+                                    placeholder="————⠀⠀가격" aria-label="Amount (to the nearest dollar)">
+                            </div>
+
+                            <div class="input-group" style="margin-bottom: 5px;">
+                                <span class="input-group-addon"></span>
+                                <!-- <select class="custom-select" name="novelCategory" style="width: 400px;">
+                                    <option selected>————⠀⠀카테고리</option>
+                                    {%for i in form.novelCategory%}
+                                    <option value="{{i}}">{{i.value}}</option>
+                                    {% endfor %}
+                                </select> -->
+                                {{form.novelCategory}}
+                            </div>
+                        </div>
+                        <input class="btn btn-dark" type="submit" value="집필">
+                </div>
     </form>
 </div>
 
