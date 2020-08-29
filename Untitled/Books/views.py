@@ -173,4 +173,13 @@ def search_novel(request):
         Q(title__icontains=w)
     ).distinct()  # 중복사항 제거
 
-    return render(request, 'search.html', {"w": w, "search_result":search_result})
+    return render(request, 'search_novel.html', {"w": w, "search_result":search_result})
+
+def search_book(request):
+    w = request.GET.get('w') or ""
+
+    search_result = Book.objects.filter(
+        Q(title__icontains=w)
+    ).distinct()  # 중복사항 제거
+
+    return render(request, 'search_book.html', {"w": w, "search_result":search_result})

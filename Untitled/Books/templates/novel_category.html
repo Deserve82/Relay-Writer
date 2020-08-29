@@ -37,20 +37,10 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-light" style="background-color: lightgray; height: 5em;">
-        <a class="navbar-brand mb-0" href="{% url 'main'%}" style="width: fit-content;"><h2><strong>Untitled</strong></h2></a>
-        <h1 style="text-align: center; margin-right: 2em;font-family: NanumMyeongjo">{{category}}</h1>
-        <button type="button" class="btn btn-warning mr-sm-2" style="width: 5em; text-align: right; border-radius: 2em;" onclick="location.href='{% url 'novel_list' %}' ">
-            &lt; Prev
-        </button>
-    </nav>
-
-    <div style="text-align: center;">
-    <br> 여기에 계획대로 Search 기능을 추가해야 할까?<br>
-    귀찮은떼
-    <br>
-    <hr>
-    </div>
+    <div class="padding">
+        <h1 style="text-align: center; margin-right: 2em; font-family: NanumMyeongjo; position: relative; top:-4em; right: -1em;">
+            {{category}}
+        </h1>
 
     <div class="wrapper" style="max-width: 800px; text-align: center;">
     {% for novel in sieved_novels %}
@@ -67,8 +57,8 @@
         </div>
     {% endfor %}
     </div>
-    
 
+    </div>
 </body>
 </html>
 

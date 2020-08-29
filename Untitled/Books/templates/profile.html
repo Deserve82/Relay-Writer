@@ -19,6 +19,15 @@
         });
     </script>
     <style>
+        body {
+            background-color: whitesmoke;
+        }
+
+        .padding {
+            padding-right: 20rem;
+            padding-left: 20rem;
+        }
+
         .card {
             margin-top: 20px;
             padding: 30px;
@@ -218,6 +227,15 @@
             text-transform: uppercase;
             transition: color 0.15s ease-in-out 0s;
         }
+
+        .rectangle {
+            width: 140px;
+            height: 180px;
+            background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
+        }
     </style>
 </head>
 
@@ -228,100 +246,91 @@
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
-            <div class="panel panel-warning">
-            <div class="panel-heading">
-                <div class="useravatar">
-                    <br>
-                    <br>
-                    <br>
-                    <center><img alt=""
-                            src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png"
-                            width="100">
-                        <div class="card-info"> <span class="card-title">{{user.username}}</span></div>
-                    </center>
-                    <!-- <div class="twPc-divStats">
-                        <ul class="twPc-Arrange">
-                            <li class="twPc-ArrangeSizeFit">
-                                <span class="twPc-StatLabel twPc-block">내가 작성한 도서</span>
-                                <span></span>
-                                </a>
-                            </li>
-                            <li class="twPc-ArrangeSizeFit">
-                                <span class="twPc-StatLabel twPc-block">참여한 도서</span>
-
-                                </a>
-                            </li>
-                            <li class="twPc-ArrangeSizeFit">
-                                <span class="twPc-StatLabel twPc-block">좋아요</span>
-                                <p>{{likes}}</p>
-                                </a>
-                            </li>
-                        </ul>
-                    </div> -->
-                    <br>
-                    <br>
-                    <br>
-
-                </div>
-                <span class="pull-right">
-                    <!-- Tabs -->
-                    <br>
-                    <br>
-                    <ul class="nav panel-tabs">
-                        <li class="active"><a href="#tab1" data-toggle="tab">내가 작성한 도서</a></li>
-                        <li><a href="#tab2" data-toggle="tab">도서 모음집</a></li>
-                        <li><a href="#tab3" data-toggle="tab">좋아요</a></li>
-                    </ul>
-                </span>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
-            <div class="panel-body">
-                <div class="tab-content">
-                    <div class="tab-pane active" id="tab1">
-                        {%for novel in written_novel%}
-                        <div>
-                        {% if novel.novelImage %}
-                        <img src="{{novel.novelImage.url}}">
-                        {% endif %}
-                        <p>{{novel.title}}</p>
-                        </div>
-                        {%endfor%}
+            <div class="panel" style="position: relative; top: -12em; background-color: whitesmoke; border: 1px solid rgba(174, 174, 174, 0.714);">
+                <div class="panel-heading" style="background-color: olivedrab;">
+                    <div class="useravatar">
+                        <br>
+                        <br>
+                        <br>
+                        <center><img alt=""
+                                src="https://www.nicepng.com/png/full/136-1366211_group-of-10-guys-login-user-icon-png.png"
+                                width="100">
+                            <div class="card-info"> <span class="card-title"><h3 style="color: whitesmoke; position: relative; top: -0.7em;"><strong>{{user.username}}</strong></h3></span></div>
+                        </center>
+                        <br>
+                        <br>
+                        <br>
 
                     </div>
-                        <div class="tab-pane" id="tab2" margin:auto;>
-                        <div class="col-md-10">
-                            {% for novel in novels%}
-                            <div>
-                            {% if novel.novelImage %}
-                            <img src="{{novel.novelImage.url}}">
-                            {% endif %}
-                            <p>{{novel.title}}</p>
-                            </div>
-                            {%endfor%}
+                    <span class="pull-right">
+                        <!-- Tabs -->
+                        <br>
+                        <br>
+                        <!-- ############ 버튼으로 이동이 되면 밑의 <ul> <li>*3 </ul> 은 삭제 ################ -->
+                        <div class="nav panel-tabs" data-toggle="button">
+                            <button type="button" onclick="href='#tab1'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 작성한 도서</button>
+                            <button type="button" onclick="location.href='#tab2'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 구매한 도서</button>
+                            <button type="button" onclick="location.href='#tab3'" data-toggle="tab" class="btn btn-outline-secondary" style="border-color:rgba(174, 174, 174, 0.714)">내가 좋아한 도서</button>
                         </div>
-                        </div>
-                    
-                        <div class="tab-pane" id="tab3">
-                            {% for novel in like%}
-                            <div>
-                            {% if novel.novelImage %}
-                            <img src="{{novel.novelImage.url}}">
-                            {% endif %}
-                            <p>{{novel.title}}</p>
-                            </div>
-                            {%endfor%}
-                            </div>
 
+                        <ul class="nav panel-tabs" style="margin-right: 7.5em;">
+                            <li class="active"><a href="#tab1" data-toggle="tab">내가 작성한 도서</a></li>
+                            <li><a href="#tab2" data-toggle="tab">도서 모음집</a></li>
+                            <li><a href="#tab3" data-toggle="tab">좋아요</a></li>
+                        </ul>
+                        <!-- ############################ -->
+                    </span>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <div class="panel-body">
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1" style="margin-left: 5.5em;">
+                            {%for novel in written_novel%}
+                            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                                    {% if novel.novelImage %}
+                                    <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
+                                        style="height: 100%; width: 100%; object-fit: contain;">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {%endfor%}
                         </div>
+
+                        <div class="tab-pane" id="tab2" style="margin-left: 5.5em;">
+                            {% for novel in novels%}
+                            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                                    {% if novel.novelImage %}
+                                    <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
+                                        style="height: 100%; width: 100%; object-fit: contain;">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+
+                        <div class="tab-pane" id="tab3" style="margin-left: 5.5em;">
+                            {% for novel in like%}
+                            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                                    {% if novel.novelImage %}
+                                    <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
+                                        style="height: 100%; width: 100%; object-fit: contain;">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {%endfor%}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 

@@ -38,5 +38,6 @@ urlpatterns = [
     path('users/', include(Users.urls)),
     path('Books/like/<int:novel_id>', Books.views.like, name="like"),
     path('novel/buy/<int:novel_id>', Books.views.buy_novel, name='buy_novel'),
-    path('search/', Books.views.search_novel, name='search_novel'),
+    path('search_novel/', Books.views.search_novel, name='search_novel'),
+    path('search_book/', Books.views.search_book, name='search_book'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

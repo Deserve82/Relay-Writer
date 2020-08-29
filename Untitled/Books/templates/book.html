@@ -31,9 +31,12 @@
         <table width="100%" height="300" align = "center">
             <tr>
                 <td rowspan="6" style="text-align: center; width: 18rem; height: fit-content;">
-                    {% if book.bookImage %}
-                    <img src="{{book.bookImage.url}}" style="width: 100%; ">
-                    {% endif %}
+                    <div class="box" style="width: fit-content; height :fit-content; float: left; position: relative; top: -1em; right: -10em;">
+                        <div class="rectangle" onclick="location.href='{% url 'book' book.id %}' ">
+                            <img class="book_img" src="{{book.bookImage.url}}" alt=""
+                                style="height: 100%; width: 100%; object-fit: contain;">
+                        </div>
+                    </div>
                 </td>
                 <td><h3>{{book.title}}</h3></td>
             </tr>
@@ -64,15 +67,7 @@
     <!-- 2 태그(리뷰) -->
     <!-- #이 알아서 앞에 달리게 하고싶다 -->
     <hr>
-    <div>
-        <h5># Comment TAG</h5>
-        <br>
-        <form action="/Books/commenting/{{book.id}}" method="POST">
-            {% csrf_token %}
-            <input type="text" name="body" placeholder="tag your comment">
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+
 
     <hr>
 

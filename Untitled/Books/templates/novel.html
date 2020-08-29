@@ -9,36 +9,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-         body {
+        body {
             background-color: whitesmoke;
         }
 
-        .padding{
+        .padding {
             padding-right: 20rem;
             padding-left: 20rem;
         }
+
         .middle {
-            text-align:center;
+            text-align: center;
         }
 
-        a {text-decoration: none;}
+        a {
+            text-decoration: none;
+        }
 
-        a:link{
-            color:black;
+        a:link {
+            color: black;
         }
 
         a:visited {
-            color:black;
+            color: black;
             text-decoration: none;
         }
 
         a:hover {
-            color:olivedrab;
+            color: olivedrab;
         }
 
         ::selection {
             background-color: olivedrab;
             color: whitesmoke;
+        }
+
+        .rectangle {
+            width: 250px;
+            height: 300px;
+            background: lightgray;
+            margin: 2rem 2rem 0.5rem 2rem;
+            display: inline-block;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -52,13 +64,19 @@
             <table width="100%" height="300" align="center">
                 <tr>
                     <td rowspan="8" style="text-align: center;">
-                        {% if novel.novelImage %}
-                        <img src="{{novel.novelImage.url}}">
-                        {% endif %}
+                        <div class="box" style="width: fit-content; height :fit-content; float: left; position: relative; top: -1em; right: -10em;">
+                            <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                                {% if novel.novelImage %}
+                                <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
+                                    style="height: 100%; width: 100%; object-fit: contain;">
+                                {% endif %}
+                            </div>
+                        </div>
                     </td>
-                    <td>
-                        <h3>{{novel.title}}</h3>
-                    </td>
+                <div style="min-width: 250px;">
+                <td>
+                    <h3>{{novel.title}}</h3>
+                </td>
                 </tr>
                 <tr>
                     <td>{{novel.author}}</td>
@@ -81,6 +99,7 @@
                 <tr>
                     <td>{{likes}}명이 좋아하는 책입니다</td>
                 </tr>
+                </div>
             </table>
 
         </div>
@@ -98,26 +117,26 @@
                     {% csrf_token %}
                     <input type="text" name="body" placeholder="# tag your comment">
                     <button type="submit">Submit</button>
-                    </form>
+                </form>
             </div>
 
             <div class="col-md-7">
                 {% for tag in tags %}
                 <button style="border-radius: 20px;">
-                    # {{tag.body}} 
+                    # {{tag.body}}
                 </button>
                 {% endfor %}
 
                 <!-- {% if tag.body %} -->
                 <!-- {% else %} -->
-                    <!-- <p style="text-align:center; margin-top:30px;">tag가 아직 없습니다</p> -->
+                <!-- <p style="text-align:center; margin-top:30px;">tag가 아직 없습니다</p> -->
                 <!-- {% endif %} -->
 
             </div>
         </div>
 
         <div class="padding">
-        <hr>
+            <hr>
         </div>
 
         <!-- 하단 바에 3+4+5 -->
@@ -130,24 +149,24 @@
 
                     <div class="col-md-4" style="text-align:center;">
                         <form action="/Books/like/{{novel.id}}" method="GET">
-                            <button type="submit" > LIKE </button>
+                            <button type="submit"> LIKE </button>
                         </form>
                     </div>
 
 
-            <!-- 4 바로읽기 -->
+                    <!-- 4 바로읽기 -->
                     <div class="col-md-4" style="text-align:center;">
-                        <a href="{% url 'content' novel.id %}" ><button>바로 읽기</button></a>
-                    </div> 
+                        <a href="{% url 'content' novel.id %}"><button>바로 읽기</button></a>
+                    </div>
 
 
-    <!-- 5 엮기(내 Book에 넣기) -->
-            <!-- 단편집에 담기 어떻게 할지 고민 -->
-            <div class="col-md-4" style="text-align:center;">
-                <a href="{% url 'buy_novel' novel.id %}"><button>단편집에 담기</button></a>
+                    <!-- 5 엮기(내 Book에 넣기) -->
+                    <!-- 단편집에 담기 어떻게 할지 고민 -->
+                    <div class="col-md-4" style="text-align:center;">
+                        <a href="{% url 'buy_novel' novel.id %}"><button>단편집에 담기</button></a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
 </body>
 
 </html>

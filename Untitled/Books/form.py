@@ -16,4 +16,7 @@ class CompileForm(forms.ModelForm):
     editDate = forms.DateField(initial=datetime.date.today,widget=forms.DateInput(attrs={'required': 'required', }))
     
 class NovelSearchForm(forms.Form):
-    search_word = forms.CharField(label='Search Word') 
+    search_word = forms.CharField(label='Search Word')
+
+class BookSearchForm(forms.Form):
+    search_word = forms.CharField(label='Search Word')

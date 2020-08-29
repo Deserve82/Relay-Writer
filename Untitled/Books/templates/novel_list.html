@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-
         body {
             background-color: whitesmoke;
         }
@@ -56,10 +55,6 @@
         }
 
         .rectangle {
-            /* overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center; */
             width: 140px;
             height: 180px;
             background: lightgray;
@@ -114,36 +109,38 @@
     <div style="display: inline;">
         <nav class="navbar navbar-light padding" style="width: 50%; float: left;">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link mb-0 h5" href="{% url 'main' %}" style="color:rgb(88, 88, 88); position: relative;left:200px;font-family: NanumMyeongjo">소설집<span class="sr-only">(current)</span></a>
+                <li class="nav-item">
+                    <a class="nav-link mb-0 h5" href="{% url 'main' %}" style="color:rgb(88, 88, 88); position: relative;left:200px;font-family: NanumMyeongjo"><strong>소설집</strong><span class="sr-only"></span></a>
                 </li>
             </ul>
         </nav>
         <nav class="navbar navbar-light padding" style="width: 50%;">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="color:rgb(88, 88, 88); position:relative;right:150px;font-family: NanumMyeongjo">단편 소설</a>
+                    <a class="nav-link mb-0 h5" href="{% url 'novel_list' %}" style="color:rgb(88, 88, 88); position:relative;right:150px;font-family: NanumMyeongjo"><strong>단편 소설</strong></a>
                 </li>
             </ul>
         </nav>
     </div>
+    <div class="padding">
     <form method="GET" class="form-inline my-2 my-lg-0" action="{%url 'search_novel'%}" style="margin-left: 15%; padding: 1rem;">
         <input id="searchbar" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="w" style="width: 70%;">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="검색">Search</button>
     </form>
-    <hr>
+    </div>
+    <div class="padding"> <hr> </div>
 
     <!-- 목록을 보여주는 구간 -->
     <div id="main" class="padding">
         {% for category in categories%}
-        <div style="margin-top: 1em;" onclick="location.href='{% url 'book_category' %}?q={{category}}'">
+        <div style="margin-top: 1em;" onclick="location.href='{% url 'novel_category' %}?q={{category}}'">
             <!-- 나중에 여기서 onclick 속성 부여 -->
             <h2>
                 <span style="font-size:20px;font-family: NanumMyeongjo">{{category}}</span>
                     <span style="float: right; margin-right: 20%; font-size:20px;position: relative;left:170px">></span>
                 </h2>
             </div>
-            <div class="wrapper" style="max-width: 800px;">
+            <div class="wrapper" style="max-width: 800px; position: relative; right: -10em;">
                 {% for novel in novels %}
                 {% if novel.novelCategory == category %}
                 <div class="box" style="width: 208px; height :260px; float: left;">
@@ -152,7 +149,7 @@
                     </div>
                     <div style="text-align: center; line-height: 0.2rem;">
                         <h6 class="two-line" style="">{{novel.title}}</h6>
-                        {{novel.author}}
+                        {{novel.author.username}}
                     </div>
                 </div>
                 {%endif%}

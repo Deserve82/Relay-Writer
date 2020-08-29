@@ -9,15 +9,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body {
-            background-color: whitesmoke;
-        }
-
-        .padding {
-            padding-right: 20rem;
-            padding-left: 20rem;
-        }
-
         .rectangle {
             /* overflow: hidden;
                     display: flex;
@@ -46,27 +37,30 @@
 
 <body>
     <div class="padding">
-        <h1 style="text-align: center; margin-right: 2em; font-family: NanumMyeongjo; position: relative; top:-4em; right: -1em;">
-            {{category}}
-        </h1>
+        <h1 style="text-align: center; margin-right: 2em; font-family: NanumMyeongjo; position: relative; top:-4em; right: -1em;">"{{w}}"의 검색 결과</h1>
 
         <div class="wrapper" style="max-width: 800px; text-align: center;">
-            {% for book in sieved_books %}
-            <div class="dd" style="width: fit-content; height :fit-content; float: left;">
-                <div class="rectangle" onclick="location.href='{% url 'book' book.id %}' ">
-                    {% if book.bookImage %}
-                    <img class="book_img" src="{{book.bookImage.url}}" alt=""
+            {% if search_result %}
+            {% for novel in search_result %}
+            <div class="box" style="width: fit-content; height :fit-content; float: left;">
+                <div class="rectangle" onclick="location.href='{% url 'novel' novel.id %}' ">
+                    {% if novel.novelImage %}
+                    <img class="novel_img" src="{{novel.novelImage.url}}" alt=""
                         style="height: 100%; width: 100%; object-fit: contain;">
                     {% endif %}
                 </div>
-                <div style="text-align: center; line-height: 0.2rem;">
-                    <h6 class="two-line">{{book.title}}</h6>
-                    {{book.author}}
+                <div style="text-align: center; line-height: 0.2rem; height: fit-content;">
+                    <h6 class="two-line">{{novel.title}}</h6>
+                    {{novel.author}}
                 </div>
             </div>
             {% endfor %}
+            {% elif w %}
+            "{{w}}" 는 검색 결과가 없습니다!
+            {% else %}
+            검색어를 입력하세요.
+            {% endif %}
         </div>
-
     </div>
 
 
