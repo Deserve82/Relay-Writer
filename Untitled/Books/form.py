@@ -11,7 +11,7 @@ class WriteForm(forms.ModelForm):
 class CompileForm(forms.ModelForm):
     class Meta:
         model = Book
-        fields = ['title', 'editor', 'editDate', 'bookImage', 'bookPrice', 'contents', 'bookCategory']
+        fields = ['title', 'editor', 'editDate', 'bookImage', 'contents', 'bookCategory']
 
     editDate = forms.DateField(initial=datetime.date.today,widget=forms.DateInput(attrs={'required': 'required', }))
     

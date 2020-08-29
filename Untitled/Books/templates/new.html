@@ -35,65 +35,15 @@
                     <br>
                     <form class="mt-8" method="POST">
                         {% csrf_token %}
-                        <div class="-mt-px">
-                            <div class="input-group" style="margin-bottom: 5px;">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-envelope"
-                                        aria-hidden="true"></span></span>
-                                <input id="title" type="text" class="form-control form-control-lg" name="title"
-                                    placeholder="제목">
-                            </div>
-                            <form>
-                                <div class="form-row">
-                                    <div class="input-group col" style="margin-bottom: 5px;">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
-                                                aria-hidden="true"></span></span>
-                                        <!-- <input id="author" type="text" class="form-control" name="author"
-                                            placeholder="__________⠀⠀작가"> -->
-                                            {{form.author}}
-                                    </div>
-
-                                    <div class="input-group col" style="margin-bottom: 5px;">
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
-                                                aria-hidden="true"></span></span>
-                                        <input id="publisher" type="text" class="form-control" name="publisher"
-                                            placeholder="__________⠀⠀출판사">
-                                    </div>
-                                </div>
-                            </form>
-
-
-                            <div class="input-group" style="margin-bottom: 5px;">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
-                                        aria-hidden="true"></span></span>
-                                <textarea id="novelContent" type="text" class="form-control" name="novelContent"
-                                    placeholder="————⠀⠀글" rows="7"></textarea>
-                            </div>
-
-                            <div class="input-group" style="margin-bottom: 5px;">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
-                                        aria-hidden="true"></span></span>
-                                <input id="novelImage" type="file" name="novelImage">
-                            </div>
-
-                            <div class="input-group" style="margin-bottom: 5px;">
-                                <span class="input-group-addon"><span class="glyphicon glyphicon-lock"
-                                        aria-hidden="true"></span></span>
-                                <input id="novelPrice" type="integral" class="form-control" name="novelPrice"
-                                    placeholder="————⠀⠀가격" aria-label="Amount (to the nearest dollar)">
-                            </div>
-
-                            <div class="input-group" style="margin-bottom: 5px;">
-                                <span class="input-group-addon"></span>
-                                <!-- <select class="custom-select" name="novelCategory" style="width: 400px;">
-                                    <option selected>————⠀⠀카테고리</option>
-                                    {%for i in form.novelCategory%}
-                                    <option value="{{i}}">{{i.value}}</option>
-                                    {% endfor %}
-                                </select> -->
-                                {{form.novelCategory}}
-                            </div>
+                        <div style="position: relative; right: -10em;">
+                            <table>
+                                {{form.as_table}}
+                            </table>
                         </div>
-                        <input class="btn btn-dark" type="submit" value="집필">
+
+                        <div style="position: relative; right: -33.5em;">
+                            <input class="btn btn-dark" type="submit" value="집필">
+                        </div>
                 </div>
     </form>
 </div>

@@ -23,10 +23,11 @@
         <!-- 여기에 회원가입/로그아웃 등도 추가해서 사용 -->
         {% if user.is_authenticated %}
         <div>
-            <a type="button" onclick="location.href='{% url 'new'%}'"><i class="fas fa-pen-nib"></i></a>
-            <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'profile'%}'"><i class="fas fa-user"></i></a>
+            <a type="button" style="border-radius: 2em; width:20px" onclick="location.href='{% url 'new' %}'"><i class="fas fa-pen-nib"></i></a>
+            <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'compile_book' %}'"><i class="fas fa-journal-whills"></i></a>
+            <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'profile' %}'"><i class="fas fa-user"></i></a>
             <a type="button" style="border-radius: 2em; width:50px" onclick="location.href='{% url 'logout' %}'"><i class="fas fa-sign-out-alt"></i></a>
-            <a type="button" style="border-radius: 2em; width:20px"></a>
+            
         </div>
         {%else%}
         <a type="button" style="border-radius: 2em;  width:50px" onclick="location.href='{% url 'signin' %}'"><i class="fas fa-sign-in-alt"></i></a>

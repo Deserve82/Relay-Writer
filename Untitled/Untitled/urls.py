@@ -40,4 +40,5 @@ urlpatterns = [
     path('novel/buy/<int:novel_id>', Books.views.buy_novel, name='buy_novel'),
     path('search_novel/', Books.views.search_novel, name='search_novel'),
     path('search_book/', Books.views.search_book, name='search_book'),
+    path('compile/', Books.views.compile_book, name='compile_book'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

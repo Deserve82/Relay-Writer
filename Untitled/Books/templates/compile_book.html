@@ -4,15 +4,27 @@
 
 
 <br>
-<div class = "container">
-    <form method = "POST" action ="{% url 'compile_book'%}" enctype="multipart/form-data">
+<div class="container padding">
+    <form method="POST" action="{% url 'compile_book'%}" enctype="multipart/form-data">
         {%csrf_token%}
-        <div style = "text-align: left;">
-            <table>
-                {{form.as_table}}
-            </table>
-                <input class = "btn btn-dark" type = "submit" value="글쓰기">
-        </div>
+        <div style="position: relative;top:-220px">
+            <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md w-full">
+                    <div>
+                        <h2 class="mt-6 text-center text-4xl leading-9 font-extrabold text-gray-900"
+                            style="font-family: NanumMyeongjo; color: #003a3d;">
+                            단편집 엮기
+                        </h2>
+                    </div>
+                    <br>
+                    <form class="mt-8" method="POST">
+                        {% csrf_token %}
+                        <table style="position: relative; right: -3em;">
+                            {{form.as_table}}
+                        </table>
+                        <br>
+                        <input class = "btn btn-dark" type = "submit" value="단편집으로 엮기" style="position: relative; right: -10em;">
+                </div>
     </form>
 </div>
 
